@@ -19,7 +19,7 @@ public class UserModel extends BaseDomain{
 	@Column
 	private String secondname;
 	@Column
-	private String passsword;
+	private String password;
 	@Column
 	private String email;
 	@Column
@@ -33,10 +33,10 @@ public class UserModel extends BaseDomain{
 	
 	
 	public String getPasssword() {
-		return passsword;
+		return password;
 	}
-	public void setPasssword(String passsword) {
-		this.passsword = passsword;
+	public void setPasssword(String password) {
+		this.password = password;
 	}
 	public String getUsername() {
 		return username;

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.DAO.UserDAO;
@@ -39,11 +40,27 @@ public class UserController {
 		userModel.setErrorMessage("User is available");
 			return new ResponseEntity <List<UserModel>>(userobjlist,HttpStatus.OK);
 		}
+//	
+//	@GetMapping("/validate/{username}/{password}")
+//	public ResponseEntity<UserModel> validateCredentials(@PathVariable("username")String username, @PathVariable("password") String password){
+//		
+//		if(userDAO.validate(username, password) == null){
+//			userModel=new UserModel();
+//			userModel.setErrorCode("404");
+//			userModel.setErrorMessage("Invalid Credential..password..plese try again");
+//		
+//		}else{
+//			userModel.setErrorCode("200");
+//			userModel.setErrorMessage("You aer succesfully logged in ....");
+//		}
+//return new ResponseEntity<UserModel>(userModel, HttpStatus.OK);
+//}
+//	
 	
-	@GetMapping("/validate/{userid}/{password}")
-	public ResponseEntity<UserModel> validateCredentials(@PathVariable("userid")String userid, @PathVariable("password") String password){
+	@GetMapping("/validate")
+	public ResponseEntity<UserModel> validateCredentials(@RequestBody UserModel user){
 		
-		if(userDAO.validate(userid, password)==null){
+		if(userDAO.validate(user.getUsername(), user.getPasssword()) == null){
 			userModel=new UserModel();
 			userModel.setErrorCode("404");
 			userModel.setErrorMessage("Invalid Credential..password..plese try again");
