@@ -28,7 +28,7 @@ public class UserController {
 	UserModel userModel;
 	
 	public ResponseEntity<List<UserModel>> getAllUser(){  //ResponseEntity constructor, if we pass java object, it returns json object
-		List userobjlist= userDAO.list();        //need to convert into json objects
+		List<UserModel> userobjlist= userDAO.list();        //need to convert into json objects
 	
 		if(userobjlist.isEmpty()){
 		userModel.setErrorCode("100");
@@ -40,6 +40,12 @@ public class UserController {
 		userModel.setErrorMessage("User is available");
 			return new ResponseEntity <List<UserModel>>(userobjlist,HttpStatus.OK);
 		}
+	
+	
+	
+	
+	
+	
 //	
 //	@GetMapping("/validate/{username}/{password}")
 //	public ResponseEntity<UserModel> validateCredentials(@PathVariable("username")String username, @PathVariable("password") String password){
@@ -57,24 +63,22 @@ public class UserController {
 //}
 //	
 	
-	@GetMapping("/validate")
+	@RequestMapping(value = "/validate", method = RequestMethod.POST)
 	public ResponseEntity<UserModel> validateCredentials(@RequestBody UserModel user){
 		
-		if(userDAO.validate(user.getUsername(), user.getPasssword()) == null){
+		if(userDAO.validate(user.getUsername(), user.getPassword()) == null){
 			userModel=new UserModel();
 			userModel.setErrorCode("404");
 			userModel.setErrorMessage("Invalid Credential..password..plese try again");
-		
+			
 		}else{
 			userModel.setErrorCode("200");
 			userModel.setErrorMessage("You aer succesfully logged in ....");
-		}
+
+				}
 return new ResponseEntity<UserModel>(userModel, HttpStatus.OK);
 }
-	
 
-	
-	
 	
 	@PostMapping(value="/register")
 	public ResponseEntity<UserModel> Register(@RequestBody UserModel userModel){
@@ -90,6 +94,10 @@ return new ResponseEntity<UserModel>(userModel, HttpStatus.OK);
 }
 	@GetMapping("/hello")
 	public String rajesh(){
+		userDAO.save(userModel);
+		userModel.setErrorCode("200");
+		userModel.setErrorMessage("Successfully registered");
+	
 		return "hwllo rajesh, how u doing";
 	}
 	

@@ -16,35 +16,48 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 							    }
 					
 
-							 this.fetchAllUsers = function() {
-								console.log("fetchAllUsers...")
-								UserService
-										.fetchAllUsers()
-										.then(
-												function(d) {
-													self.users = d;
-												},
-												function(errResponse) {
-													console
-															.error('Error while fetching Users');
-												});
-							};
+//							 this.fetchAllUsers = function() {
+//								console.log("fetchAllUsers...")
+//								UserService
+//										.fetchAllUsers()
+//										.then(
+//												function(d) {
+//													self.users = d;
+//												},
+//												function(errResponse) {
+//													console
+//															.error('Error while fetching Users');
+//												});
+//							};
 							
 							//self.fatchAllUsers();
 
 							self.createUser = function(user) {
-								console.log("createUser...")
 								UserService
 										.createUser(user)
 										.then(
 												function(d)
 												{
 													alert("Thank you for registration")
-													$location.path("/")
 												},
 												function(errResponse) {
 													console
-															.error('Error while creating User.');
+													alert("not registered")
+													
+												});
+							};							
+							self.createblog = function(user) {
+								UserService
+										.createblog(user)
+										.then(
+												function(d)
+												{
+													alert("Thank you for registration")
+												},
+												function(errResponse) {
+													console
+													alert("not registered")
+													
 												});
 							};							
 
@@ -55,7 +68,7 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 										.then(
 
 												function(d) {
-
+													
 													self.user = d;
 													if (self.user.errorCode == "404")
 
@@ -67,13 +80,14 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 
 													} else { //valid credentials
 																
-																self.fetchAllUsers(); 
+//																self.fetchAllUsers(); 
+																alert(self.user.errorMessage)
 														
-														$rootScope.currentUser = self.user
-                                                     	$cookieStore.put('currentUser', self.user);
-														
-														$http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.currentUser; 
-														$location.path('/chat_forum');
+//														$rootScope.currentUser = self.user
+//                                                     	$cookieStore.put('currentUser', self.user);
+//														
+//														$http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.currentUser; 
+////														$location.path('/chat_forum');
 
 													}
 
@@ -98,15 +112,22 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 
 							
 							self.login = function() {
-								{
-									self.authenticate(self.user);
+								{	self.authenticate(self.user);
 								}
 
 							};
 
-							self.submit = function() {
+							self.register = function() {
 								{
 									self.createUser(self.user);
+								}
+								self.reset();
+							};
+
+
+							self.adddblog = function() {
+								{
+									self.createblog(self.user);
 								}
 								self.reset();
 							};

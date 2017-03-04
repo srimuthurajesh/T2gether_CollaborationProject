@@ -32,10 +32,10 @@ public class UserModel extends BaseDomain{
 	
 	
 	
-	public String getPasssword() {
+	public String getPassword() {
 		return password;
 	}
-	public void setPasssword(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	public String getUsername() {
