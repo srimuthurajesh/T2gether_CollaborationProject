@@ -8,29 +8,27 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="UserModel")
+@Table(name="User_TABLE")
 @Component
 public class UserModel extends BaseDomain{
 	
 	@Id
-	private String username;
+	 String username;
 	@Column
-	private String firstname;
+	 String firstname;
 	@Column
-	private String secondname;
+	String secondname;
 	@Column
-	private String password;
+	String password;
 	@Column
-	private String email;
+	String email;
 	@Column
-	private String mobile;
+	String mobile;
 	@Column
-	private char status;
+	 char status;
 	@Column
-	private char is_online;
-	
-	
-	
+	 char is_online;
+
 	
 	public String getPassword() {
 		return password;

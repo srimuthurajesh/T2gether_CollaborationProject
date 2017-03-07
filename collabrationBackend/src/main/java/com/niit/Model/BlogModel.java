@@ -11,13 +11,12 @@ import javax.persistence.Transient;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="BLOG")
+@Table(name="BLOG_TABLE")
 @Component
 public class BlogModel extends BaseDomain {
 
 	@Id
-	private int blogid;
-	private String blogtitle;
+	private String blogname;
 	private String blogdescription;
 	@Column(name="username")
 	private String userid;
@@ -27,17 +26,11 @@ public class BlogModel extends BaseDomain {
 	private Date blogdatetime;
 	private char blogstatus;
 	private String blogreaason;
-	public int getBlogid() {
-		return blogid;
+	public String getBlogname() {
+		return blogname;
 	}
-	public void setBlogid(int blogid) {
-		this.blogid = blogid;
-	}
-	public String getBlogtitle() {
-		return blogtitle;
-	}
-	public void setBlogtitle(String blogtitle) {
-		this.blogtitle = blogtitle;
+	public void setBlogname(String blogname) {
+		this.blogname = blogname;
 	}
 	public String getBlogdescription() {
 		return blogdescription;

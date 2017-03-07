@@ -14,8 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/*import com.niit.DAO.UserDAO;
+import com.niit.Model.UserModel;
+*/
+
 import com.niit.DAO.UserDAO;
 import com.niit.Model.UserModel;
+
 
 @RestController
 public class UserController {
@@ -45,24 +50,7 @@ public class UserController {
 	
 	
 	
-	
-//	
-//	@GetMapping("/validate/{username}/{password}")
-//	public ResponseEntity<UserModel> validateCredentials(@PathVariable("username")String username, @PathVariable("password") String password){
-//		
-//		if(userDAO.validate(username, password) == null){
-//			userModel=new UserModel();
-//			userModel.setErrorCode("404");
-//			userModel.setErrorMessage("Invalid Credential..password..plese try again");
-//		
-//		}else{
-//			userModel.setErrorCode("200");
-//			userModel.setErrorMessage("You aer succesfully logged in ....");
-//		}
-//return new ResponseEntity<UserModel>(userModel, HttpStatus.OK);
-//}
-//	
-	
+	//@GetMapping(value="/validate")
 	@RequestMapping(value = "/validate", method = RequestMethod.POST)
 	public ResponseEntity<UserModel> validateCredentials(@RequestBody UserModel user){
 		
@@ -80,8 +68,8 @@ return new ResponseEntity<UserModel>(userModel, HttpStatus.OK);
 }
 
 	
-	@PostMapping(value="/register")
-	public ResponseEntity<UserModel> Register(@RequestBody UserModel userModel){
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+		public ResponseEntity<UserModel> Register(@RequestBody UserModel userModel){
 		if(userDAO.get(userModel.getUsername())==null){
 			userDAO.save(userModel);
 			userModel.setErrorCode("200");

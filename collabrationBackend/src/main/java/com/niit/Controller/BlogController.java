@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.DAO.BlogDAO;
 import com.niit.Model.BlogModel;
+import com.niit.Model.UserModel;
 
 @RestController
 public class BlogController {
@@ -30,14 +31,24 @@ public class BlogController {
 		return blogDAO.getAllBlog();
 	}
 	
-	@PostMapping(value = "/blog")
+	@PostMapping(value = "/createblog")
 	public ResponseEntity<BlogModel> createBlog(@RequestBody BlogModel blogmodel, HttpSession session) {
 		
 		String loggedInUserID = (String) session.getAttribute("loggedInUserID");
 		blogmodel.setUserid(loggedInUserID);
 		blogmodel.setBlogstatus('N');// A->Accepted,  R->Rejected
 		
-		blogDAO.saveblog(blogmodel);
+		
+		if(blogDAO.saveblog(blogmodel)){
+			blogModel=new BlogModel();
+			blogModel.setErrorCode("200");
+			blogModel.setErrorMessage("Blog created");
+			
+		}else{
+			blogModel.setErrorCode("400");
+			blogModel.setErrorMessage("blog not created ok, try again....");
+
+				}
 
 		return new ResponseEntity<BlogModel>(blogmodel, HttpStatus.OK);
 	}

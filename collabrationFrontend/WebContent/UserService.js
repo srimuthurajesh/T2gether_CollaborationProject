@@ -9,7 +9,7 @@ app.factory('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
            
              
             createUser: function(user){
-            	    return $http.post(BASE_URL+'/user/', user) //1
+            	    return $http.post(BASE_URL+'/register', user) //1
                             .then(
                                     function(response){
                                         return response.data;

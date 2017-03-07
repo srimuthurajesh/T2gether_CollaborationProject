@@ -13,7 +13,8 @@ app.config(function($routeProvider) {
 	  })
 	  .when('/addblog', {
 		    templateUrl : 'addblog.html',
-		    controller  : 'UserController'
+		    controller  : 'BlogController'
 		  })
-	  
+		  
+		  
 });

@@ -1,12 +1,20 @@
 
-app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootScope',						'$http',
+app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootScope','$http',
 						function($scope, UserService, $location, $rootScope,
 								$http) {
-							console.log("UserController...")
+							console.log("inside UserController...")
 							var self = this;
-							this.user = {username : '',name : '', password : '',	mobile : '',
-								address : '', email : '',isOnline : '',	role : '',
-								errorCode : '',	errorMessage : '' , imageUrl:''
+							this.user = {	username : '',
+											firstname : '', 
+											secondname : '',	
+											email : '',
+											address : '', 
+											mobile : '',
+											is_online : '',	
+											role : '',
+											errorCode : '',	
+											errorMessage : '' , 
+											imageUrl:''
 							};
 							
 							this.users = []; //json array
@@ -16,21 +24,21 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 							    }
 					
 
-//							 this.fetchAllUsers = function() {
-//								console.log("fetchAllUsers...")
-//								UserService
-//										.fetchAllUsers()
-//										.then(
-//												function(d) {
-//													self.users = d;
-//												},
-//												function(errResponse) {
-//													console
-//															.error('Error while fetching Users');
-//												});
-//							};
+							 this.fetchAllUsers = function() {
+								console.log("fetchAllUsers...")
+								UserService
+										.fetchAllUsers()
+										.then(
+												function(d) {
+													self.users = d;
+												},
+												function(errResponse) {
+													console
+															.error('Error while fetching Users');
+												});
+							};
 							
-							//self.fatchAllUsers();
+							self.fatchAllUsers();
 
 							self.createUser = function(user) {
 								UserService
@@ -46,22 +54,9 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 													
 												});
 							};							
-							self.createblog = function(user) {
-								UserService
-										.createblog(user)
-										.then(
-												function(d)
-												{
-													alert("Thank you for registration")
-												},
-												function(errResponse) {
-													console
-													alert("not registered")
-													
-												});
-							};							
-
-							self.authenticate = function(user) {
+						
+							
+							self.login = function(user) {
 								console.log("authenticate...")
 								UserService
 										.authenticate(user)
@@ -110,14 +105,7 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 
 						
 
-							
-							self.login = function() {
-								{	self.authenticate(self.user);
-								}
-
-							};
-
-							self.register = function() {
+													self.register = function() {
 								{
 									self.createUser(self.user);
 								}
@@ -125,14 +113,20 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 							};
 
 
-							self.adddblog = function() {
-								{
-									self.createblog(self.user);
-								}
-								self.reset();
+							self.reset = function() {
+								self.user = {
+									id : '',
+									name : '',
+									password : '',
+									mobile : '',
+									address : '',
+									email : '',
+									isOnline : '',
+									errorCode : '',
+									errorMessage : ''
+								};
+								$scope.myForm.$setPristine(); // reset Form
 							};
-
-						
 						} ]);
 
 
