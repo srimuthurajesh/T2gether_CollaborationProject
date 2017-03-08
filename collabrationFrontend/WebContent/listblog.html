@@ -1,0 +1,8 @@
+
+<div ng-controller="BlogConrtoller as ctrl">
+BLOG page<br>
+<div ng-repeat="bloglist in ctrl.bloglist">
+<a href="#" ng-click="ctrl.getblogbyname(bloglistl.blogname)"> Blog Title: {{bloglist.blogname}}-Author:{{bloglist.blogdescription}}</a>
+</div>
+</div>
+

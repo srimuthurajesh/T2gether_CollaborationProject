@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.Model.BlogModel;
 
@@ -23,19 +24,22 @@ public class BlogDAOImpl implements BlogDAO{
 
 	
 	//------------------------------------------------------GET BLOG---------------------------------------------------------------
-	public BlogModel getBlog(int blogid){
-		return (BlogModel) sessionFactory.getCurrentSession().get(BlogModel.class, blogid);
+	@Transactional
+	public BlogModel getBlog(String blogname){
+		return (BlogModel) sessionFactory.getCurrentSession().get(BlogModel.class, blogname);
 	
 	}
 	
 	
 	//------------------------------------------------------GET ALL BLOG---------------------------------------------------------------
+	@Transactional
 	public List<BlogModel> getAllBlog(){
 		Query query = sessionFactory.getCurrentSession().createQuery("from BlogModel");
 	return query.list();
 	}
 	
 	//------------------------------------------------------GET all BLOG of by user---------------------------------------------------------------
+	@Transactional
 	public List<BlogModel> getAllblogs(String username){
 		String hql="from BlogModel where username='"+username+"'";
 	Query query = sessionFactory.getCurrentSession().createQuery(hql);
@@ -43,6 +47,7 @@ return query.list();
 	}
 	
 	//------------------------------------------------------SAVE BLOG---------------------------------------------------------------
+	@Transactional
 	public boolean saveblog(BlogModel blogModel){
 		try{
 			sessionFactory.getCurrentSession().save(blogModel);
@@ -54,6 +59,7 @@ return query.list();
 	}
 	
 	//------------------------------------------------------update BLOG---------------------------------------------------------------
+	@Transactional
 	public boolean update(BlogModel blogModel){
 		return false;
 	}

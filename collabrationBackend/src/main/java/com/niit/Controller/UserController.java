@@ -52,9 +52,9 @@ public class UserController {
 	
 	//@GetMapping(value="/validate")
 	@RequestMapping(value = "/validate", method = RequestMethod.POST)
-	public ResponseEntity<UserModel> validateCredentials(@RequestBody UserModel user){
+	public ResponseEntity<UserModel> validateCredentials(@RequestBody UserModel userModel){
 		
-		if(userDAO.validate(user.getUsername(), user.getPassword()) == null){
+		if(userDAO.validate(userModel.getUsername(), userModel.getPassword()) == null){
 			userModel=new UserModel();
 			userModel.setErrorCode("404");
 			userModel.setErrorMessage("Invalid Credential..password..plese try again");

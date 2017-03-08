@@ -3,17 +3,22 @@
 app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScope',function($scope, BlogService,$location,$routeParams,$rootScope) {
 	console.log("inside BlogController...")
           var self = this;
-          self.blogModel={blogname:'',blogdescription:'',username:'',dateTime:'',status:'',blogreason:''};
-          self.blogs=[];
+          self.blogModel={blogname:'',
+        		  blogdescription:'',
+        		  username:'',
+        		  dateTime:'',
+        		  status:'',
+        		  blogreason:''};
+          self.bloglist=[];
           
           
-         self.getSelectedBlog = getBlog
+         self.getSelectedBlog = getblogbyname
           
-          function getBlog(id){
-        	  BlogService.getBlog(id)
+          function getblogbyname(blogname){
+        	  BlogService.getblogbyname(blogname)
                   .then(
                                function(d) {
-                                     //self.blog = d;
+                                     self.bloglist = d;
                                      $location.path('/view_blog'); 
                                },
                                 function(errResponse){
@@ -27,7 +32,7 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
               BlogService.fetchAllBlogs()
                   .then(
                                function(d) {
-                                    self.blogs = d;
+                                    self.bloglist = d;
                                },
                                 function(errResponse){
                                     console.error('Error while fetching Blogs');
@@ -39,38 +44,26 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
               BlogService.createBlog(blogModel)
                       .then(
                     		  
-                    		  function(d) {
-									
-									self.user = d;
-									if (self.user.errorCode == "404")
+                    		
+									function(d)
+									{self.blogModel=d;
+										alert("Blog created successfully")
+										$location.path('/viewblog');
 
-									{
-										alert(self.user.errorMessage)
-
-										self.user.username = "";
-										self.user.password = "";
-
-									} else { //valid credentials
-												
-//												self.fetchAllUsers(); 
-												alert(self.user.errorMessage)
-
-									}}
+									},
+									function(errResponse) {
+										console
+										alert("sorry buddy try again")
+										
+									});
+				};							
 
 								
-                    		  
-//                    		  
-//                      self.fetchAllBlogs, 
-//                              function(errResponse){
-//                                   console.error('Error while creating Blog.');
-//                              } 
-                  );
-          };
- 
+       
          self.updateBlog = function(blog, id){
               BlogService.updateBlog(blog, id)
                       .then(
-                              self.fetchAllBlogs, 
+                             // self.fetchAllBlogs, 
                               function(errResponse){
                                    console.error('Error while updating Blog.');
                               } 
@@ -84,7 +77,7 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 						.then(
 								function(d) {
 									self.job = d;
-									self.fetchAllBlogs
+									//self.fetchAllBlogs
 									$location.path("/manage_jobs")
 									alert(self.job.errorMessage)
 									
@@ -104,7 +97,7 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 						.then(
 								function(d) {
 									self.job = d;
-									self.fetchAllBlogs
+									//self.fetchAllBlogs
 									$location.path("/manage_jobs")
 									alert(self.job.errorMessage)
 									
@@ -116,9 +109,7 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 			};
 
  
-               //calling the method
-          //when it will be execute?
-          self.fetchAllBlogs();
+           self.fetchAllBlogs();
  
           self.addblog = function() {
            
@@ -128,9 +119,9 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
                
           self.edit = function(id){
               console.log('id to be edited', id);
-              for(var i = 0; i < self.blogs.length; i++){
-                  if(self.blogs[i].id === id) {
-                     self.blogModel = angular.copy(self.blogs[i]);
+              for(var i = 0; i < self.bloglist.length; i++){
+                  if(self.blogslist[i].id === id) {
+                     self.blogModel = angular.copy(self.blogslist[i]);
                      break;
                   }
               }
@@ -146,8 +137,8 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
  
            
           self.reset = function(){
-        	   self.blog={id:'',title:'',description:'',BlogID:'',dateTime:'',status:'',reason:'',errorMessage : ''};
-               $scope.myForm.$setPristine(); //reset Form
+        	   self.blogModel={id:'',title:'',description:'',BlogID:'',dateTime:'',status:'',reason:'',errorMessage : ''};
+           //    $scope.myForm.$setPristine(); //reset Form
           };
  
       }]);

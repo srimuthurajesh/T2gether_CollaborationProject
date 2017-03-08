@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+
 
 <div ng-controller="BlogController as ctrl">
 
@@ -12,8 +6,8 @@
 	<form name="form" ng-submit="ctrl.addblog()" role="form">
 		
 <label for="">Blog title</label> 
-<input type="text"	name="blogtitle" id="blogtitle" class="form-control"
-					ng-model="ctrl.blogModel.blogtitle" required /> 					
+<input type="text"	name="blogtitle" id="blogname" class="form-control"
+					ng-model="ctrl.blogModel.blogname" required /> 					
 		
 
 <label for="">Blog content</label>
@@ -29,6 +23,3 @@
 	
 </div>
 
-
-</body>
-</html>

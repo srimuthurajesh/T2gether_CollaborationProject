@@ -3,24 +3,20 @@ app.factory('BlogService', ['$http', '$q','$rootScope', function($http, $q,$root
 	
 	console.log("inside BlogService...")
 	
-	var BASE_URL='http://localhost:8081/CollabrationBackend'
+	var BASE_URL='http://localhost:8080/collabrationBackend'
     return {
          
             fetchAllBlogs: function() {
-                    return $http.get(BASE_URL+'/blogs')
+                    return $http.get(BASE_URL+'/fetchallblogs')
                             .then(
                                     function(response){
                                         return response.data;
-                                    }, 
-                                    function(errResponse){
-                                        console.error('Error while fetching Blogs');
-                                        return $q.reject(errResponse);
                                     }
                             );
             },
              
-            createBlog: function(blog){
-                    return $http.post(BASE_URL+'/createblog', blog)
+            createBlog: function(blogModel){
+                    return $http.post(BASE_URL+'/createblog', blogModel)
                             .then(
                                     function(response){
                                         return response.data;
@@ -86,8 +82,8 @@ app.factory('BlogService', ['$http', '$q','$rootScope', function($http, $q,$root
                             );
             },
             
-            getBlog: function(id){
-                return $http.get  (BASE_URL+'/blog/'+id)
+            getblogbyname: function(blogname){
+                return $http.get  (BASE_URL+'/getblogbyname/'+blogname)
                         .then(
                                 function(response){
                                 	$rootScope.selectedBlog = response.data

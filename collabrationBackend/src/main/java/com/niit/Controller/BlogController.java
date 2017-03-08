@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +23,16 @@ import com.niit.Model.UserModel;
 @RestController
 public class BlogController {
 
+	private static final Logger logger = 
+			LoggerFactory.getLogger(BlogController.class);
+	
+
 	@Autowired
 	private BlogModel blogModel;
 	@Autowired
 	private BlogDAO blogDAO;
 	
-	@GetMapping("/getallBlog")
+	@GetMapping("/fetchallblogs")
 	public List<BlogModel> getallBlog(){
 		return blogDAO.getAllBlog();
 	}
@@ -34,9 +40,9 @@ public class BlogController {
 	@PostMapping(value = "/createblog")
 	public ResponseEntity<BlogModel> createBlog(@RequestBody BlogModel blogmodel, HttpSession session) {
 		
-		String loggedInUserID = (String) session.getAttribute("loggedInUserID");
-		blogmodel.setUserid(loggedInUserID);
-		blogmodel.setBlogstatus('N');// A->Accepted,  R->Rejected
+//		String loggedInUserID = (String) session.getAttribute("loggedInUserID");
+//		blogmodel.setUserid(loggedInUserID);
+//		blogmodel.setBlogstatus('N');// A->Accepted,  R->Rejected
 		
 		
 		if(blogDAO.saveblog(blogmodel)){
@@ -54,7 +60,7 @@ public class BlogController {
 	}
 	
 	@PutMapping("/approveblog/{blogID}")
-	public BlogModel approveblog(@PathVariable("blogid")int blogid){
+	public BlogModel approveblog(@PathVariable("blogid")String blogid){
 		blogModel=blogDAO.getBlog(blogid);
 		blogModel.setBlogstatus('A');
 		
@@ -67,4 +73,21 @@ public class BlogController {
 			
 		}return blogModel;
 	}
+	
+	
+	
+	@GetMapping("/getblogbyname/{blogname}")
+	public BlogModel getBlogbyname(@PathVariable("blogname") String blogname) {
+		logger.debug("inside getblogbyname BlogController where username= "+blogname);
+		BlogModel blogModel = blogDAO.getBlog(blogname);
+		
+		if(blogModel==null)
+		{
+			blogModel = new BlogModel();
+			blogModel.setErrorCode("404");
+			blogModel.setErrorMessage("Blog not found with the id:" + blogname);
+		}
+		
+		return blogModel;
+			}
 }

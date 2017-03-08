@@ -1,6 +1,6 @@
-
-app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootScope','$http',
-						function($scope, UserService, $location, $rootScope,
+'use strict';
+app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootScope','$http','$cookieStore',
+						function($scope, UserService, $location, $rootScope,$cookieStore,
 								$http) {
 							console.log("inside UserController...")
 							var self = this;
@@ -17,7 +17,7 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 											imageUrl:''
 							};
 							
-							this.users = []; //json array
+							this.users = []; 
 							
 							 $scope.orderByMe = function(x) {
 							        $scope.myOrderBy = x;
@@ -38,8 +38,8 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 												});
 							};
 							
-							self.fatchAllUsers();
-
+//							self.fatchAllUsers();
+//
 							self.createUser = function(user) {
 								UserService
 										.createUser(user)
@@ -47,6 +47,8 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 												function(d)
 												{
 													alert("Thank you for registration")
+													$location.path('/login');
+
 												},
 												function(errResponse) {
 													console
@@ -56,7 +58,7 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 							};							
 						
 							
-							self.login = function(user) {
+							self.validateUser = function(user) {
 								console.log("authenticate...")
 								UserService
 										.authenticate(user)
@@ -68,21 +70,22 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 													if (self.user.errorCode == "404")
 
 													{
-														alert(self.user.errorMessage)
-
+														alert(self.user.errorMessage+" wrong")
+console.log('hello rajesh');
 														self.user.username = "";
 														self.user.password = "";
 
-													} else { //valid credentials
-																
-//																self.fetchAllUsers(); 
-																alert(self.user.errorMessage)
+													} else { 
+														console.log('hello rajesh muthu');																
+																//self.fetchAllUsers(); 
+														//		alert(self.user.errorMessage +" rigth")
 														
-//														$rootScope.currentUser = self.user
-//                                                     	$cookieStore.put('currentUser', self.user);
-//														
-//														$http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.currentUser; 
-////														$location.path('/chat_forum');
+														$rootScope.currentUser = self.user
+														console.log(self.user);
+                                                     	$cookieStore.put('currentUser', self.user);
+												
+														$http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.currentUser; 
+														$location.path('/');
 
 													}
 
@@ -105,13 +108,22 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 
 						
 
-													self.register = function() {
+							self.register = function() {
 								{
 									self.createUser(self.user);
 								}
 								self.reset();
 							};
 
+							
+							self.login = function() {
+								{
+									self.validateUser(self.user);
+								}
+							};
+
+							
+							
 
 							self.reset = function() {
 								self.user = {
