@@ -28,8 +28,16 @@ public class UserModel extends BaseDomain{
 	 char status;
 	@Column
 	 char is_online;
+	@Column
+	 String role="ROLE_USER";
 
 	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public String getPassword() {
 		return password;
 	}

@@ -21,6 +21,18 @@ public class JobModel extends BaseDomain {
 	
 	@Column
 	private String jobapplications;
+	
+	private String username;
+	
+	
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
 	public String getJobname() {
 		return jobname;

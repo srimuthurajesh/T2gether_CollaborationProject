@@ -41,10 +41,8 @@ return sessionFactory.getCurrentSession().get(UserModel.class, username);
 	@SuppressWarnings("rawtypes")
 	@Transactional
 	public UserModel validate(String username, String password) {
-		System.out.println(username+password);
 		String hql = "from UserModel where username = '" + username + "' and password = '" + password +"'";
 		Query query =  sessionFactory.getCurrentSession().createQuery(hql);
-		System.out.println("the result is"+query.uniqueResult());
 		return (UserModel) query.uniqueResult();
 
 		

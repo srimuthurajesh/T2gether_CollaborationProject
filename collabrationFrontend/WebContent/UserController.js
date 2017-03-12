@@ -1,45 +1,29 @@
-'use strict';
-app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootScope','$http','$cookieStore',
-						function($scope, UserService, $location, $rootScope,$cookieStore,
+app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootScope',						'$http',
+						function($scope, UserService, $location, $rootScope,
 								$http) {
-							console.log("inside UserController...")
+							console.log("UserController...")
 							var self = this;
-							this.user = {	username : '',
-											firstname : '', 
-											secondname : '',	
-											email : '',
-											address : '', 
-											mobile : '',
-											is_online : '',	
-											role : '',
-											errorCode : '',	
-											errorMessage : '' , 
-											imageUrl:''
+							this.user = {
+									username : '',
+									firstname : '', 
+									secondname : '', 
+									password : '',	
+									mobile : '',
+									address : '', 
+									email : '',
+									is_online : '',	
+									role : '',
+									errorCode : '',	
+									errorMessage : '' , 
+									imageUrl:''
 							};
 							
-							this.users = []; 
+							this.users = []; //json array
 							
 							 $scope.orderByMe = function(x) {
 							        $scope.myOrderBy = x;
 							    }
-					
 
-							 this.fetchAllUsers = function() {
-								console.log("fetchAllUsers...")
-								UserService
-										.fetchAllUsers()
-										.then(
-												function(d) {
-													self.users = d;
-												},
-												function(errResponse) {
-													console
-															.error('Error while fetching Users');
-												});
-							};
-							
-//							self.fatchAllUsers();
-//
 							self.createUser = function(user) {
 								UserService
 										.createUser(user)
@@ -47,8 +31,6 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 												function(d)
 												{
 													alert("Thank you for registration")
-													$location.path('/login');
-
 												},
 												function(errResponse) {
 													console
@@ -56,9 +38,22 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 													
 												});
 							};							
-						
-							
-							self.validateUser = function(user) {
+							self.createblog = function(user) {
+								UserService
+										.createblog(user)
+										.then(
+												function(d)
+												{
+													alert("Thank you for registration")
+												},
+												function(errResponse) {
+													console
+													alert("not registered")
+													
+												});
+							};							
+
+							self.authenticate = function(user) {
 								console.log("authenticate...")
 								UserService
 										.authenticate(user)
@@ -70,30 +65,21 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 													if (self.user.errorCode == "404")
 
 													{
-														alert(self.user.errorMessage+" wrong")
-console.log('hello rajesh');
+														alert(self.user.errorMessage)
+
 														self.user.username = "";
 														self.user.password = "";
 
 													} else { 
-														console.log('hello rajesh muthu');																
-																//self.fetchAllUsers(); 
-														//		alert(self.user.errorMessage +" rigth")
-														
 														$rootScope.currentUser = self.user
 														console.log(self.user);
-                                                     	$cookieStore.put('currentUser', self.user);
-												
-														$http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.currentUser; 
-														$location.path('/');
-
+	                                                 	
+														 $location.path('/');
 													}
 
 												},
 												function(errResponse) {
-
-													console
-															.error('Error while authenticate Users');
+													
 												});
 							};
 
@@ -108,6 +94,13 @@ console.log('hello rajesh');
 
 						
 
+							
+							self.login = function() {
+								{	self.authenticate(self.user);
+								}
+
+							};
+
 							self.register = function() {
 								{
 									self.createUser(self.user);
@@ -115,41 +108,14 @@ console.log('hello rajesh');
 								self.reset();
 							};
 
-							
-							self.login = function() {
+
+							self.adddblog = function() {
 								{
-									self.validateUser(self.user);
+									self.createblog(self.user);
 								}
+								self.reset();
 							};
 
-							
-							
-
-							self.reset = function() {
-								self.user = {
-									id : '',
-									name : '',
-									password : '',
-									mobile : '',
-									address : '',
-									email : '',
-									isOnline : '',
-									errorCode : '',
-									errorMessage : ''
-								};
-								$scope.myForm.$setPristine(); // reset Form
-							};
+						
 						} ]);
-
-
-
-
-
-
-
-
-
-
-
-
 

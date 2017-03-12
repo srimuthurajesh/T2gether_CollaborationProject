@@ -32,9 +32,10 @@ public class BlogDAOImpl implements BlogDAO{
 	
 	
 	//------------------------------------------------------GET ALL BLOG---------------------------------------------------------------
+	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Transactional
 	public List<BlogModel> getAllBlog(){
-		Query query = sessionFactory.getCurrentSession().createQuery("from BlogModel");
+		Query<BlogModel> query = sessionFactory.getCurrentSession().createQuery("from BlogModel");
 	return query.list();
 	}
 	
@@ -42,7 +43,7 @@ public class BlogDAOImpl implements BlogDAO{
 	@Transactional
 	public List<BlogModel> getAllblogs(String username){
 		String hql="from BlogModel where username='"+username+"'";
-	Query query = sessionFactory.getCurrentSession().createQuery(hql);
+	Query<BlogModel> query = sessionFactory.getCurrentSession().createQuery(hql);
 return query.list();
 	}
 	

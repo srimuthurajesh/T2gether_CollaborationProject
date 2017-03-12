@@ -50,6 +50,7 @@
     <version>1.0.0</version>
 </dependency>
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+				
 		<!-- https://mvnrepository.com/artifact/org.jboss.logging/jboss-logging -->
 <dependency>
     <groupId>org.jboss.logging</groupId>
@@ -178,6 +179,12 @@
             <version>11.2.0</version>
         </dependency>
         
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-websocket</artifactId>
+    <version>4.3.7.RELEASE</version>
+</dependency>
         
         
 </dependencies>

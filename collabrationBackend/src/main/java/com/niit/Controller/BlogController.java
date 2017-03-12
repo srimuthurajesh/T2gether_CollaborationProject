@@ -39,7 +39,7 @@ public class BlogController {
 	
 	@PostMapping(value = "/createblog")
 	public ResponseEntity<BlogModel> createBlog(@RequestBody BlogModel blogmodel, HttpSession session) {
-		
+		System.out.println("username:" + blogModel);
 //		String loggedInUserID = (String) session.getAttribute("loggedInUserID");
 //		blogmodel.setUserid(loggedInUserID);
 //		blogmodel.setBlogstatus('N');// A->Accepted,  R->Rejected
@@ -78,7 +78,7 @@ public class BlogController {
 	
 	@GetMapping("/getblogbyname/{blogname}")
 	public BlogModel getBlogbyname(@PathVariable("blogname") String blogname) {
-		logger.debug("inside getblogbyname BlogController where username= "+blogname);
+		logger.debug("inside getblogbyname BlogController ");
 		BlogModel blogModel = blogDAO.getBlog(blogname);
 		
 		if(blogModel==null)

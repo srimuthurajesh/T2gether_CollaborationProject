@@ -1,54 +1,62 @@
-<!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Getting started with angular</title>
-  <!-- angular cdn -->
-<!--   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script> -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script> -->
+<title>Collabration</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
-<!-- <link rel="stylesheet" href="resources/css/bootstrap.css"> -->
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
-<!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script> -->
+<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular-route.min.js"></script> -->
+  
+<script src="resources/angular.js"></script>
+<script src="resources/angular-route.js"></script>
+<script src="resources/angular-cookies.js"></script>
  
-
-
 </head>
-<body ng-app="" >
+<body ng-app="myApp" ng-controller="UserController">
 
-  <label>Name: </label>
-    <input type="text" ng-model="name"> Welcome Mr. {{name}}
-
+  
   <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Collobration site</a>
+<!--       <a class="navbar-brand" href="#">Collobration site</a> -->
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
       <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Blog
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">User
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/login">Login</a></li>
+          <li><a href="#/register">Register</a></li>
+          </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="">Blog
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="#/addblog">Add blog</a></li>
-          <li><a href="#/listblog">List all Blogs</a></li>
+          <li><a href="#/listblog">List Blog</a></li>
           </ul>
-         
       </li>
-    </ul>
-     <div ng-if="!equals({}, currentUser)">
-    
-     <ul class="nav navbar-nav navbar-right">
-      <li> <a href="#"><span class="glyphicon glyphicon-user"></span> {{currentUser.username}}'s account</a></li>
-      <li> <a href="#/logout"><span class="" >Log-out</span></a> </li>
-      <li> <a href="#/login"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
-
-    </ul>
-  </div>
-       
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Job
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/addjob">Add Job</a></li>
+          <li><a href="#/listjob">List Job</a></li>
+          </ul>
+      </li>
+      <li class=""><a href="#/forum">Forum</a></li></ul>
+      <ul class="nav navbar-nav navbar-right">
+      <li class=""><a href="#">{{currentUser.username}}'s account</a></li>
+      <li class=""><a href="#" ng-click="logout()">Logout</a></li>
+      
+      
+       </ul>
   </div>
 </nav>
 
@@ -57,39 +65,15 @@
 <div class="row">
 <div class="col-md-6">
     <div ng-view></div>
-   </div></div>
-   
-   hello  {{currentUser.username}}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<script src="resources/angular.js"></script>
-<script src="resources/angular-route.js"></script>
-<script src="resources/angular-cookies.js"></script>
-<script src="resources/angular-messages.js"></script>
-<script src="resources/angular-resource.js"></script>
-<script src="resources/js/bootstrap.js"></script>
-<script src="resources/js/Jquery.js"></script>
-	
-	
-	
-	
-	
+</div></div></div>
 	
 	
 	<script src="app.js"></script>
 	<script src="UserController.js"></script>
 	<script src="UserService.js"></script>
-	<script src="BlogController.js"></script>
-	<script src="BlogService.js"></script>
-	</div>
+	<script src="Blog/BlogController.js"></script>
+	<script src="Blog/BlogService.js"></script>
+	
 
 </body>
 

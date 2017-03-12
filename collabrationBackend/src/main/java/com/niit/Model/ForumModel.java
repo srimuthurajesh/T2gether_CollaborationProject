@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name="FORUM_TABLE")
 @Component
-public class ForumModel {
+public class ForumModel extends BaseDomain{
 
 	@Id
 	private String forumname;

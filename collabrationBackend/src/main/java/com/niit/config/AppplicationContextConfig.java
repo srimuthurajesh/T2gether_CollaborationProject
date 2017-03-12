@@ -32,7 +32,7 @@ public class AppplicationContextConfig {
 	    DriverManagerDataSource dataSource = new DriverManagerDataSource();
 	    dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 	dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
-	    dataSource.setUsername("COLLOBRATION");
+	    dataSource.setUsername("COLLOBRATIONDATABASE");
 	dataSource.setPassword("admin");
 	 
 	    return dataSource;
@@ -41,7 +41,7 @@ public class AppplicationContextConfig {
 	    Properties properties = new Properties();
 	    properties.put("hibernate.show_sql", "true");
 	    properties.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
-	  // properties.put("hibernate.hbm2ddl.auto", "update");
+	   properties.put("hibernate.hbm2ddl.auto", "update");
 	    return properties;
 	}
 	@Autowired
