@@ -1,3 +1,4 @@
+'use strict'
 var app = angular.module('myApp', ['ngRoute']);
 
 app.config(function($routeProvider) {
@@ -7,6 +8,7 @@ app.config(function($routeProvider) {
     templateUrl : 'login.html',
     controller  : 'UserController'
   })
+  
   .when('/register', {
 	    templateUrl : 'register.html',
 	    controller  : 'UserController'
@@ -25,8 +27,16 @@ app.config(function($routeProvider) {
 		    controller  : 'JobController'
 		  })
 	  .when('/viewbjob', {
-		    templateUrl : 'Job/listjob.html',
+		    templateUrl : 'Job/viewjob.html',
 		    controller  : 'JobController'
+		  })
+		    .when('/viewalluser', {
+		    templateUrl : 'Friend/viewalluser.html',
+		    controller  : 'FriendController'
+		  })
+	  .when('/viewfriend', {
+		    templateUrl : 'Friend/viewfriend.html',
+		    controller  : 'FriendController'
 		  })
 });
 
@@ -58,7 +68,7 @@ app.run( function ($rootScope, $location, $http) {
 		        	  console.log("Navigating to login page:")
 		        	  alert("You need to loggin to do this operation")
 
-						            $location.path('/');
+						            $location.path('/login');
 		                }
 	        	}
 	        

@@ -58,8 +58,9 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 
 									} else { 
 												
-												self.fetchAllUsers(); 
-													$location.path('/Blog/addblog');
+												self.fetchAllBlogs(); 
+										self.reset();
+													$location.path('/addblog');
 												
 
 									}}
@@ -156,8 +157,8 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
  
            
           self.reset = function(){
-        	   self.blog={id:'',title:'',description:'',BlogID:'',dateTime:'',status:'',reason:'',errorMessage : ''};
-//               $scope.myForm.$setPristine(); //reset Form
+        	  self.blogModel={blogname:'',blogdescription:'',username:'',blogdateTime:'',blogstatus:'',blogreason:''};
+                // $scope.myForm.$setPristine(); 
           };
  
       }]);

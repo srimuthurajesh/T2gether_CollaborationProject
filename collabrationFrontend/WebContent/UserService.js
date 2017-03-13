@@ -33,7 +33,20 @@ app.factory('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                                     return $q.reject(errResponse);
                                 }
                         );
+        },
+        
+
+        fetchAllUsers: function() {
+        	console.log("inside  fetchAllUsers service ")
+                return $http.get(BASE_URL+'/getAllUser')
+                        .then(
+                                function(response){
+                                    return response.data;
+                                }, 
+                               null
+                        );
         }
+        
          
     };
  

@@ -2,6 +2,8 @@ package com.niit.Controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +34,9 @@ public class UserController {
 	@Autowired
 	UserModel userModel;
 	
-	public ResponseEntity<List<UserModel>> getAllUser(){  //ResponseEntity constructor, if we pass java object, it returns json object
-		List<UserModel> userobjlist= userDAO.list();        //need to convert into json objects
+	@RequestMapping(value = "/getAllUser", method = RequestMethod.GET)
+	public ResponseEntity<List<UserModel>> getAllUser(){  
+		List<UserModel> userobjlist= userDAO.list();        
 	
 		if(userobjlist.isEmpty()){
 		userModel.setErrorCode("100");
@@ -52,7 +55,7 @@ public class UserController {
 	
 	//@GetMapping(value="/validate")
 	@RequestMapping(value = "/validate", method = RequestMethod.POST)
-	public ResponseEntity<UserModel> validateCredentials(@RequestBody UserModel userModel){
+	public ResponseEntity<UserModel> validateCredentials(@RequestBody UserModel userModel, HttpSession session){
 		
 		if(userDAO.validate(userModel.getUsername(), userModel.getPassword()) == null){
 			userModel=new UserModel();
@@ -62,7 +65,8 @@ public class UserController {
 		}else{
 			userModel.setErrorCode("200");
 			userModel.setErrorMessage("You aer succesfully logged in ....");
-
+			session.setAttribute("Username", userModel.getUsername());
+			
 				}
 return new ResponseEntity<UserModel>(userModel, HttpStatus.OK);
 }

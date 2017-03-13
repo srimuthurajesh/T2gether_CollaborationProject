@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.DAO.BlogDAO;
 import com.niit.Model.BlogModel;
-import com.niit.Model.UserModel;
 
 @RestController
 public class BlogController {
@@ -39,9 +38,8 @@ public class BlogController {
 	
 	@PostMapping(value = "/createblog")
 	public ResponseEntity<BlogModel> createBlog(@RequestBody BlogModel blogmodel, HttpSession session) {
-		System.out.println("username:" + blogModel);
-//		String loggedInUserID = (String) session.getAttribute("loggedInUserID");
-//		blogmodel.setUserid(loggedInUserID);
+		String username = (String) session.getAttribute("Username");
+		blogmodel.setUsername(username);
 //		blogmodel.setBlogstatus('N');// A->Accepted,  R->Rejected
 		
 		
@@ -73,8 +71,6 @@ public class BlogController {
 			
 		}return blogModel;
 	}
-	
-	
 	
 	@GetMapping("/getblogbyname/{blogname}")
 	public BlogModel getBlogbyname(@PathVariable("blogname") String blogname) {

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name="JOB_TABLE")
 @Component
-
 public class JobModel extends BaseDomain {
 
 	@Id
@@ -22,6 +21,7 @@ public class JobModel extends BaseDomain {
 	@Column
 	private String jobapplications;
 	
+	@Column
 	private String username;
 	
 	

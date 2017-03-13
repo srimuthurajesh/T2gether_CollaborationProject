@@ -85,8 +85,9 @@ app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootS
 
 							self.logout = function() {
 								console.log("logout")
-								$rootScope.currentUser = {};
-								$cookieStore.remove('currentUser');
+//								$rootScope.currentUser = {};
+								 $rootScope.currentUser = undefined
+							//	$cookieStore.remove('currentUser');
 								UserService.logout()
 								$location.path('/');
 
