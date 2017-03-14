@@ -20,7 +20,8 @@ app.controller('FriendController', ['UserService','$scope', 'FriendService','$lo
   				secondname : '',
           };
   			self.users = [];
-          
+  			self.friendsnotify = [];
+  	          
          self.addFriend=addfriend
          
          function addfriend(username)
@@ -67,6 +68,34 @@ app.controller('FriendController', ['UserService','$scope', 'FriendService','$lo
                   );
           };
  
+          
+          self.notifications=function(){
+        	  FriendService.notifications()
+        	  .then( 
+        			  function(d) {
+                  self.friendsnotify = d;
+                  console.log(d)
+                  console.log("Got the notification list")
+                   	 $location.path('/viewnotifications');
+             }
+            
+        			  
+        			  );
+          };
+       
+          self.acceptfriend=function(username){
+        	  console.log("inside accept friend")
+        	  FriendService.acceptfriend(username)
+        	  .then( function(){
+        		
+                   	 $location.path('/viewallfriends');
+             }
+            
+        			  
+        			  );
+          };
+          
+          
          self.deleteFriend = function(id){
               FriendService.deleteFriend(id)
                       .then(
@@ -90,7 +119,6 @@ app.controller('FriendController', ['UserService','$scope', 'FriendService','$lo
  
           self.fetchAllUsers();
           self.getMyFriends();
- 
-     
- 
+      self.notifications();
+      
       }]);

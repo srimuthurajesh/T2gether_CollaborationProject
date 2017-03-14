@@ -30,19 +30,34 @@ app.factory('FriendService', ['$http', '$q','$rootScope', function($http, $q,$ro
                             );
             },
              
-            updateFriendRequest: function(friend, id){
-                    return $http.put(BASE_URL+'/friend/'+id, friend)
+            notifications: function(){
+                    return $http.get(BASE_URL+'/notifications')
                             .then(
                                     function(response){
                                         return response.data;
                                     }, 
                                     function(errResponse){
-                                        console.error('Error while updating friend');
+                                        console.error('Error while getting notification');
                                         return $q.reject(errResponse);
                                     }
                             );
             },
-             
+         
+            acceptfriend: function(username){
+            	console.log("inside acceptfriend services")
+            	console.log("rock it my boy"+username)
+                return $http.get(BASE_URL+'/acceptfriend/'+username)
+                        .then(
+                                function(response){
+                                    return response.data;
+                                }, 
+                                function(errResponse){
+                                    console.error('Error while getting notification');
+                                    return $q.reject(errResponse);
+                                }
+                        );
+        },
+         
           /*  deleteFriend: function(id){
                     return $http delete(BASE_URL+'/friend/'+id)
                             .then(

@@ -34,10 +34,15 @@ app.config(function($routeProvider) {
 		    templateUrl : 'Friend/viewalluser.html',
 		    controller  : 'FriendController'
 		  })
-	  .when('/viewfriend', {
-		    templateUrl : 'Friend/viewfriend.html',
+	  .when('/viewallfriends', {
+		    templateUrl : 'Friend/viewallfriends.html',
 		    controller  : 'FriendController'
 		  })
+
+.when('/viewnotifications', {
+	    templateUrl : 'Friend/viewnotifications.html',
+	    controller  : 'FriendController'
+	  })
 });
 
 

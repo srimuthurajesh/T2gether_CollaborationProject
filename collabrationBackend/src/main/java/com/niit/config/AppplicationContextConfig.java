@@ -34,14 +34,13 @@ public class AppplicationContextConfig {
 	dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
 	    dataSource.setUsername("COLLOBRATIONDATABASE");
 	dataSource.setPassword("admin");
-	 
 	    return dataSource;
 	}
 	private Properties getHibernateProperties() {
 	    Properties properties = new Properties();
 	    properties.put("hibernate.show_sql", "true");
 	    properties.put("hibernate.dialect", "org.hibernate.dialect.Oracle10gDialect");
-	   properties.put("hibernate.hbm2ddl.auto", "update");
+//	   properties.put("hibernate.hbm2ddl.auto", "update");
 	    return properties;
 	}
 	@Autowired
