@@ -1,9 +1,11 @@
-app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScope',function($scope, BlogService,$location,$routeParams,$rootScope) {
+app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScope',
+            function($scope, BlogService,$location,$routeParams,$rootScope) {
 	console.log("inside BlogController...")
           var self = this;
           self.blogModel={blogname:'',blogdescription:'',username:'',blogdateTime:'',blogstatus:'',blogreason:''};
           self.blogs=[];
           self.blogs1=[];
+          self.userblog=[];
           
           
          self.getBlog = getblog
@@ -97,6 +99,26 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 											.error('Error while accepting the blog.');
 								});
 			};  
+			
+			
+			
+//--------------------------------------------------------------------------USER BLOG--------------------------------------------------------------------------------------          			
+			  self.userblog = function(id) {
+					BlogService
+							.userblog()
+							.then(
+									function(d) {
+										self.userblog = d;
+										self.fetchAllBlogs
+										$location.path("/userblogs")
+										
+									},
+									
+									function(errResponse) {
+										console
+												.error('Error while accepting the blog.');
+									});
+				};  
 //--------------------------------------------------------------------------REJECT BLOG--------------------------------------------------------------------------------------          
 			self.reject = function( id) {
 				console.log("reject...")

@@ -8,7 +8,7 @@ app.factory('FriendService', ['$http', '$q','$rootScope', function($http, $q,$ro
     return {
          
 		getMyFriends: function() {
-                    return $http.get(BASE_URL+'/myFriends')
+                    return $http.get(BASE_URL+'/friendslist')
                             .then(
                                     function(response){
                                         return response.data;
@@ -42,7 +42,36 @@ app.factory('FriendService', ['$http', '$q','$rootScope', function($http, $q,$ro
                                     }
                             );
             },
-         
+
+            
+            removefriend: function(username){
+            return $http.get(BASE_URL+'/unfriend/'+username)
+                    .then(+
+                            function(response){
+                                return response.data;
+                            }, 
+                            function(errResponse){
+                                console.error('Error while deleting friend');
+                                return $q.reject(errResponse);
+                            }
+                    );
+    },
+           
+            
+    unfriend: function(username){
+    	return $http.get(BASE_URL+'/unfriend/'+username)
+                .then(
+                        function(response){
+                            return response.data;
+                        }, 
+                        function(errResponse){
+                            console.error('Error while getting notification');
+                            return $q.reject(errResponse);
+                        }
+                );
+},
+   
+            
             acceptfriend: function(username){
             	console.log("inside acceptfriend services")
             	console.log("rock it my boy"+username)
@@ -58,22 +87,9 @@ app.factory('FriendService', ['$http', '$q','$rootScope', function($http, $q,$ro
                         );
         },
          
-          /*  deleteFriend: function(id){
-                    return $http delete(BASE_URL+'/friend/'+id)
-                            .then(
-                                    function(response){
-                                        return response.data;
-                                    }, 
-                                    function(errResponse){
-                                        console.error('Error while deleting friend');
-                                        return $q.reject(errResponse);
-                                    }
-                            );
-            }
             
-           */
+           
          
     };
  
 }]);
- 

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,9 +49,23 @@ public void acceptfriend(@PathVariable String username,HttpSession session){
 	friendModel.setUsername1(username);
 	friendModel.setUsername2(username1);
 	friendDAO.acceptfriend(friendModel);
+}
+
+@GetMapping("/friendslist")
+public List<FriendModel> friendslist(HttpSession session){
+	String username = (String) session.getAttribute("Username");
+	return friendDAO.friendslist(username);
 	
+}
+@GetMapping("/unfriend/{username}")
+public void unfriend(@PathVariable String username,HttpSession session){
+	String username1 = (String) session.getAttribute("Username");
+	System.out.println("hii buddy am inside unfriend controller java"); 
+friendDAO.unfriend(username1, username);
 	
 }
 
-
 }
+
+
+

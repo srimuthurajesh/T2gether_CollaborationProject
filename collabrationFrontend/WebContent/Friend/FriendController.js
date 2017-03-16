@@ -21,7 +21,7 @@ app.controller('FriendController', ['UserService','$scope', 'FriendService','$lo
           };
   			self.users = [];
   			self.friendsnotify = [];
-  	          
+  	          self.friendlist=[];
          self.addFriend=addfriend
          
          function addfriend(username)
@@ -32,6 +32,7 @@ app.controller('FriendController', ['UserService','$scope', 'FriendService','$lo
                  .then(
                               function(d) {
                                    self.Friend = d;
+                              	 $location.path('/viewalluser');
                               },
                                function(errResponse){
                                    console.error('Error while sending friend request');
@@ -76,8 +77,7 @@ app.controller('FriendController', ['UserService','$scope', 'FriendService','$lo
                   self.friendsnotify = d;
                   console.log(d)
                   console.log("Got the notification list")
-                   	 $location.path('/viewnotifications');
-             }
+                   }
             
         			  
         			  );
@@ -94,16 +94,22 @@ app.controller('FriendController', ['UserService','$scope', 'FriendService','$lo
         			  
         			  );
           };
+
+                  
           
-          
-         self.deleteFriend = function(id){
-              FriendService.deleteFriend(id)
-                      .then(
-                              self.fetchAllFriends, 
+         self.unfriend = function(username){
+              FriendService.unfriend(username)
+                      .then(        			  function(d) {
+
+                    		  console.log('inside unfriend jolly')
+                    			 $location.path('/viewallfriends')
+                    			 self.fetchAllFriends},
+                      
                               function(errResponse){
                                    console.error('Error while deleting Friend.');
-                              } 
-                  );
+                                 
+} 
+                     );
           };
           
           self.fetchAllUsers = function() {
@@ -121,4 +127,4 @@ app.controller('FriendController', ['UserService','$scope', 'FriendService','$lo
           self.getMyFriends();
       self.notifications();
       
-      }]);
+}]);

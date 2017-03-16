@@ -1,4 +1,4 @@
-app.controller(	'UserController', [	'$scope', 'UserService', '$location','$rootScope',						'$http',
+app.controller(	'UserController', [	'$scope', 'UserService','$location','$rootScope',						'$http',
 						function($scope, UserService, $location, $rootScope,
 								$http) {
 							console.log("UserController...")

@@ -1,4 +1,5 @@
-app.factory('BlogService', ['$http', '$q','$rootScope', function($http, $q,$rootScope){
+app.factory('BlogService', ['$http', '$q','$rootScope', 
+                            function($http, $q,$rootScope){
 	
 	console.log("inside BlogService...")
 	
@@ -97,7 +98,21 @@ app.factory('BlogService', ['$http', '$q','$rootScope', function($http, $q,$root
                                     return $q.reject(errResponse);
                                 }
                         );
-        }
+        },
+        
+        userblog: function(){
+            return $http.get  (BASE_URL+'/userblog/')
+                    .then(
+                            function(response){
+                            	$rootScope.userblog = response.data
+                                return response.data;
+                            }, 
+                            function(errResponse){
+                                console.error('Error while getting blog');
+                                return $q.reject(errResponse);
+                            }
+                    );
+    }
          
     };
  

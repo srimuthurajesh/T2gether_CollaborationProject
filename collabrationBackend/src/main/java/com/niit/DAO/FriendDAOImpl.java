@@ -37,17 +37,51 @@ String hql="from FriendModel where username2= '"+username+"'and friendstatus='w'
 		System.out.println("am inside acceptfriend daoimpl");
 		Session session=sessionFactory.openSession();
 		String hql="from FriendModel where username1= '"+friendModel.getUsername1()+"'and username2='"+friendModel.getUsername2()+"'";
-		FriendModel friendModel2= (FriendModel) session.createQuery(hql).uniqueResult();
-		friendModel2.setFriendstatus('f');
-		System.out.println(friendModel2.getFriendid());
-		System.out.println(friendModel2.getUsername1());
-		System.out.println(friendModel2.getUsername2());
-		System.out.println(friendModel2.getFriendstatus());
-		System.out.println(friendModel2);
-		session.saveOrUpdate(friendModel2);
-				System.out.println("save or update done");
-						session.close();
+		friendModel= (FriendModel) session.createQuery(hql).uniqueResult();
+		friendModel.setFriendstatus('f');
+		sessionFactory.getCurrentSession().saveOrUpdate(friendModel);
+				
+				
+		hql="from FriendModel where username1= '"+friendModel.getUsername2()+"'and username2='"+friendModel.getUsername1()+"'";
+		if( session.createQuery(hql).uniqueResult()==null){
+			FriendModel friendModel2= new FriendModel();
+			friendModel2.setUsername1(friendModel.getUsername2());
+			friendModel2.setUsername2(friendModel.getUsername1());
+			friendModel2.setFriendstatus('f');
+			sessionFactory.getCurrentSession().save(friendModel2);
+			
+		}else{
+			friendModel.setFriendstatus('f');
+			sessionFactory.getCurrentSession().saveOrUpdate(friendModel);
+					
+		}
+				
+				session.close();
+	
+		}
+
+	@Transactional
+	public List<FriendModel> friendslist(String username){
+		Session session=sessionFactory.openSession();
+		String hql="from FriendModel where username1= '"+username+"'and friendstatus='f'";
+		List<FriendModel> list= sessionFactory.openSession().createQuery(hql).list();
+
+		return list;
 	}
 
+	@Transactional
+	public void unfriend(String username1, String username2){
+	Session session=sessionFactory.openSession();
+	String hql="from FriendModel where username1= '"+username1+"'and username2='"+username2+"'";
+	FriendModel friendModel= new FriendModel();
+	friendModel=(FriendModel) session.createQuery(hql).uniqueResult();
+	sessionFactory.getCurrentSession().delete(friendModel);
+
+	 hql="from FriendModel where username1= '"+username2+"'and username2='"+username1+"'";
+	friendModel=(FriendModel) session.createQuery(hql).uniqueResult();
+	sessionFactory.getCurrentSession().delete(friendModel);
+	
+	
+	}
 	
 }

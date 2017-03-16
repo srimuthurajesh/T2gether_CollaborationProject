@@ -21,12 +21,16 @@ app.config(function($routeProvider) {
 		    templateUrl : 'Blog/listblog.html',
 		    controller  : 'BlogController'
 		  })
+		    .when('/userblogs', {
+		    templateUrl : 'Blog/userblogs.html',
+		    controller  : 'BlogController'
+		  })
 		  
 		   .when('/addjob', {
 		    templateUrl : 'Job/addjob.html',
 		    controller  : 'JobController'
 		  })
-	  .when('/viewbjob', {
+	  .when('/viewjob', {
 		    templateUrl : 'Job/viewjob.html',
 		    controller  : 'JobController'
 		  })
@@ -34,8 +38,8 @@ app.config(function($routeProvider) {
 		    templateUrl : 'Friend/viewalluser.html',
 		    controller  : 'FriendController'
 		  })
-	  .when('/viewallfriends', {
-		    templateUrl : 'Friend/viewallfriends.html',
+	  .when('/viewfriends', {
+		    templateUrl : 'Friend/viewfriends.html',
 		    controller  : 'FriendController'
 		  })
 

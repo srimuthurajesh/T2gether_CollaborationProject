@@ -3,7 +3,7 @@ app.controller('JobController', ['$scope', 'JobService','$location','$rootScope'
           var self = this;
           self.jobModel={jobname:'',jobdescription:'',username:''};
           self.jobs=[];
-            
+          self.viewjob=[];
           
          self.getJob = getjob
 
@@ -13,9 +13,9 @@ app.controller('JobController', ['$scope', 'JobService','$location','$rootScope'
                   .then(  
                 		       function(d) {
                             	   console.log('inside getselected')
-                                   
-                            	  	   console.log(d)
-                            	   
+                                       console.log(d)
+                            	        self.viewjob = d;
+                               
                                      $location.path('/viewjob'); 
                                },
                                 function(errResponse){
