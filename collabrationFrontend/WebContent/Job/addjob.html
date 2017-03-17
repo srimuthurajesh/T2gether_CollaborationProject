@@ -7,7 +7,7 @@
 		
 <label for="">job title</label> 
 <input type="text"	 class="form-control"
-					ng-model="ctrl.jobModel.jobname" required /> 		
+					ng-model="ctrl.jobModel.jobname" ng-init="ctrl.jobModel.jobname=editjob.jobname" required /> 		
 
 				
 
@@ -18,7 +18,7 @@
 <label for="">job content</label>
  <textarea 
 		name="jobdescription" id="jobdescription" class="form-control"
-		ng-model="ctrl.jobModel.jobdescription" required  cols="50" rows="10"> </textarea>
+		ng-model="ctrl.jobModel.jobdescription" ng-init="ctrl.jobModel.jobdescription=editjob.jobdescription" required  cols="50" rows="10"> </textarea>
 			
 			<br>
 	<button type="submit"		
@@ -27,7 +27,9 @@
 		</form>
 	job page:{{currentUser.username}}-name<br>
 <div ng-repeat="joblist in ctrl.jobs">
-<a  href="#" ng-click="ctrl.getJob(joblist.jobname)"> job Title: {{joblist.jobname}}    -----------------------------------post by :{{joblist.usename}}---------------- </a>
+<a  href="#" ng-click="ctrl.getJob(joblist.jobname)"> job Title: {{joblist.jobname}}   ------post by :{{joblist.usename}}---- </a>
+<a href="#" ng-click="ctrl.deletejob(joblist.jobname)"> Remove</a>--<a href="#" ng-click="ctrl.editjob(joblist.jobname)"> Edit</a>
+
 </div>
 </div>
 

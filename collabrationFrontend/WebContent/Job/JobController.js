@@ -1,9 +1,13 @@
-app.controller('JobController', ['$scope', 'JobService','$location','$rootScope',function($scope, JobService,$location,$routeParams,$rootScope) {
+console.log("start of job controller")
+
+app.controller('JobController', ['$scope', 'JobService','$location','$rootScope','$cookieStore',
+                                 function($scope, JobService,$location,$routeParams,$rootScope,$cookieStore) {
 	console.log("inside jobController...")
           var self = this;
           self.jobModel={jobname:'',jobdescription:'',username:''};
           self.jobs=[];
           self.viewjob=[];
+          self.editjob=[];
           
          self.getJob = getjob
 
@@ -65,19 +69,36 @@ app.controller('JobController', ['$scope', 'JobService','$location','$rootScope'
 
                   );
           };
-//--------------------------------------------------------------------------UPDATE job--------------------------------------------------------------------------------------          
-         self.updatejob = function(job, id){
-              JobService.updatejob(job, id)
-                      .then(
-                              self.fetchAlljobs, 
-                              function(errResponse){
-                                   console.error('Error while updating job.');
-                              } 
-                  );
-          };
-			
-			
-
+        //--------------------------------------------------------------------------UPDATE job--------------------------------------------------------------------------------------          
+          self.editjob = function(jobname){
+         	 console.log('inside editjob')
+               JobService.editjob(jobname)
+                       .then( function(d) {
+                     	  console.log('inside edit'+d)
+                     	  console.log(d)
+                     	  self.editjob=d;
+                     	  $location.path("/addjob")
+ 							
+ 						 },
+                               self.fetchAlljobs, 
+                               function(errResponse){
+                                    console.error('Error while updating job.');
+                               } 
+                   );
+           };
+           
+//--------------------------------------------------------------------------REMOVE BLOG--------------------------------------------------------------------------------------          
+           self.deletejob = function(jobname){
+               JobService.deletejob(jobname)
+                       .then( function(d) {
+                     	  $location.path("/addjob")
+ 							
+ 							 },
+                     		  function(errResponse){
+                                    console.error('Error while updating Blog.');
+                               } 
+                   );
+           };   
      self.fetchAlljobs();
  
           self.addjob = function() {
@@ -99,14 +120,7 @@ app.controller('JobController', ['$scope', 'JobService','$location','$rootScope'
               }
           };
                
-          self.remove = function(id){
-              console.log('id to be deleted', id);
-              if(self.jobModel.id === id) {//clean form if the job to be deleted is shown there.
-                 self.reset();
-              }
-              self.deletejob(id);
-          };
- 
+         
            
           self.reset = function(){
         	  self.jobModel={jobname:'',jobdescription:'',username:'',jobdateTime:'',jobstatus:'',jobreason:''};

@@ -1,6 +1,6 @@
 'use strict';
-app.controller('FriendController', ['UserService','$scope', 'FriendService','$location',
-   '$rootScope',function(UserService,$scope, FriendService,$location,$routeParams,$rootScope) {
+app.controller('FriendController', ['UserService','$scope', 'FriendService','$location', '$cookieStore',
+   '$rootScope',function(UserService,$scope, FriendService,$location,$routeParams,$rootScope,$cookieStore) {
 	console.log("inside FriendController")
           var self = this;
           self.Friend={friendid:'',username1:'',username2:'',friendstatus:''};
@@ -114,7 +114,7 @@ app.controller('FriendController', ['UserService','$scope', 'FriendService','$lo
           
           self.fetchAllUsers = function() {
 				UserService.fetchAllUsers().then(function(d) {
-					console.error('inside function, fetching Users');
+					console.log('inside function, fetching Users');
 					self.users = d;
 					console.log(d)
 				}, function(errResponse) {

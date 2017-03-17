@@ -10,5 +10,6 @@ public interface JobDAO {
 	public List<JobModel> getAllJobs(String username);
 	public boolean saveJob(JobModel JobModel);
 	public boolean update(JobModel JobModel);
+	public void deletejob(String jobname);		
 
 }

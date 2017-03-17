@@ -10,5 +10,7 @@ public interface BlogDAO {
 	public List<BlogModel> getAllblogs(String username);
 	public boolean saveblog(BlogModel blogModel);
 	public boolean update(BlogModel blogModel);
+	public void deleteblog(String blogname);
+		
 
 }

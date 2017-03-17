@@ -1,6 +1,7 @@
-app.factory('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootScope){
-	
+
 	console.log("inside jobService...")
+	
+app.factory('JobService', ['$http', '$q','$rootScope','$cookieStore', function($http, $q,$rootScope,$cookieStore){
 	
 	var BASE_URL='http://localhost:8080/collabrationBackend'
     return {
@@ -31,23 +32,25 @@ app.factory('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
                             );
             },
              
-            updatejob: function(job, id){
-                    return $http.put(BASE_URL+'/job/'+id, job)
-                            .then(
-                                    function(response){
-                                        return response.data;
-                                    }, 
-                                    function(errResponse){
-                                        console.error('Error while updating job');
-                                        return $q.reject(errResponse);
-                                    }
-                            );
-            },
+            editjob: function(jobname){
+                return $http.get(BASE_URL+'/getJobbyname/'+jobname)
+                        .then(
+                        		 function(response){
+                                 	$rootScope.editjob = response.data
+                                     return response.data;
+                                 }, 
+                                 function(errResponse){
+                                     console.error('Error while edit job');
+                                     return $q.reject(errResponse);
+                                 }
+                         );
+         },
+        
             
          
              
-            deletejob: function(id){
-                    return $httpdelete(BASE_URL+'/job/'+id)
+            deletejob: function(jobname){
+                    return $http.get (BASE_URL+'/deletejob/'+jobname)
                             .then(
                                     function(response){
                                         return response.data;

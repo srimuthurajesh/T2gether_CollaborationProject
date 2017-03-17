@@ -28,31 +28,31 @@ public class JobController {
 	
 
 	@Autowired
-	private JobModel JobModel;
+	private JobModel jobModel;
 	@Autowired
-	private JobDAO JobDAO;
+	private JobDAO jobDAO;
 	
 	@GetMapping("/fetchallJobs")
 	public List<JobModel> getallJob(){
-		return JobDAO.getAllJob();
+		return jobDAO.getAllJob();
 	}
 	
 	@PostMapping(value = "/createJob")
 	public ResponseEntity<JobModel> createJob(@RequestBody JobModel Jobmodel, HttpSession session) {
-		System.out.println("username:" + JobModel);
+		System.out.println("username:" + jobModel);
 //		String loggedInUserID = (String) session.getAttribute("loggedInUserID");
 //		Jobmodel.setUserid(loggedInUserID);
 //		Jobmodel.setJobstatus('N');// A->Accepted,  R->Rejected
 		
 		
-		if(JobDAO.saveJob(Jobmodel)){
-			JobModel=new JobModel();
-			JobModel.setErrorCode("200");
-			JobModel.setErrorMessage("Job created");
+		if(jobDAO.saveJob(Jobmodel)){
+			jobModel=new JobModel();
+			jobModel.setErrorCode("200");
+			jobModel.setErrorMessage("Job created");
 			
 		}else{
-			JobModel.setErrorCode("400");
-			JobModel.setErrorMessage("Job not created ok, try again....");
+			jobModel.setErrorCode("400");
+			jobModel.setErrorMessage("Job not created ok, try again....");
 
 				}
 
@@ -63,15 +63,22 @@ public class JobController {
 	@GetMapping("/getJobbyname/{Jobname}")
 	public JobModel getJobbyname(@PathVariable("Jobname") String Jobname) {
 		logger.debug("inside getJobbyname JobController ");
-		JobModel JobModel = JobDAO.getJob(Jobname);
+		JobModel jobModel = jobDAO.getJob(Jobname);
 		
-		if(JobModel==null)
+		if(jobModel==null)
 		{
-			JobModel = new JobModel();
-			JobModel.setErrorCode("404");
-			JobModel.setErrorMessage("Job not found with the id:" + Jobname);
+			jobModel = new JobModel();
+			jobModel.setErrorCode("404");
+			jobModel.setErrorMessage("Job not found with the id:" + Jobname);
 		}
 		
-		return JobModel;
+		return jobModel;
 			}
+
+@GetMapping(value = "/deletejob/{jobname}")
+	public void deleteBlog(@PathVariable("jobname")String jobname, HttpSession session) {
+		
+	System.out.println("hii am job"+jobname);
+	jobDAO.deletejob(jobname);
+}
 }

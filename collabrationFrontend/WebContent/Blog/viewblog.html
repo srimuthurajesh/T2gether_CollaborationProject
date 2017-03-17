@@ -1,10 +1,25 @@
+<div class="container" ng-controller="BlogController as ctrl">
+Blog-Name:{{selectedBlog.blogname}}
+<br> user-name: {{selectedBlog.usename}}
+<br>blogdescription: {{selectedBlog.blogdescription}}
+	
+	<form name="form" ng-submit="ctrl.addcomment()" role="form">
+		
+				
 
-<div ng-controller="BlogController as ctrl">
+<input type="hidden" 	value="rajesh"  class="form-control"
+					ng-model="ctrl.blogModel.username"  /> 					
+		
 
-	BLOG page<br>
-<a  ng-click="ctrl.getblog(blogs.blogname)"> Blog Title:</a> {{getBlog.blogname}}
-<br>Author:{{blogs.username}}
-<br>Description: {{blogs.blogdescription}}
+<label for="">Comment:</label>
+ <textarea 
+		name="blogdescription" class="form-control"
+		ng-model="ctrl.blogModel.blogdescription" required  ng-init="ctrl.blogModel.blogdescription=editblog.blogdescription" cols="50" rows="10"> </textarea>
+			
+			<br>
+	<button type="submit"		
+					class="btn btn-primary">Add comment</button>
+				
+		</form>
 
 </div>
-

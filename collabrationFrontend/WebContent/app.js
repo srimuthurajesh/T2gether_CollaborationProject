@@ -1,8 +1,7 @@
 'use strict'
-var app = angular.module('myApp', ['ngRoute']);
-
+var app = angular.module('myApp', [ 'ngRoute','ngCookies']);
 app.config(function($routeProvider) {
-  $routeProvider
+	$routeProvider
 
   .when('/login', {
     templateUrl : 'login.html',
@@ -18,11 +17,15 @@ app.config(function($routeProvider) {
 		    controller  : 'BlogController'
 		  })
 	  .when('/viewblog', {
-		    templateUrl : 'Blog/listblog.html',
+		    templateUrl : 'Blog/viewblog.html',
 		    controller  : 'BlogController'
 		  })
 		    .when('/userblogs', {
 		    templateUrl : 'Blog/userblogs.html',
+		    controller  : 'BlogController'
+		  })
+		    .when('/listblog', {
+		    templateUrl : 'Blog/listblog.html',
 		    controller  : 'BlogController'
 		  })
 		  
@@ -34,6 +37,11 @@ app.config(function($routeProvider) {
 		    templateUrl : 'Job/viewjob.html',
 		    controller  : 'JobController'
 		  })
+		  .when('/listjob', {
+		    templateUrl : 'Job/listjob.html',
+		    controller  : 'JobController'
+		  })
+		
 		    .when('/viewalluser', {
 		    templateUrl : 'Friend/viewalluser.html',
 		    controller  : 'FriendController'
@@ -47,10 +55,14 @@ app.config(function($routeProvider) {
 	    templateUrl : 'Friend/viewnotifications.html',
 	    controller  : 'FriendController'
 	  })
+	  .when('/chat', {
+	    templateUrl : 'Chat/chat.html',
+	    controller  : 'ChatController'
+	  })
 });
 
 
-app.run( function ($rootScope, $location, $http) {
+app.run( function ($rootScope, $location, $http, $cookieStore) {
 
 	 $rootScope.$on('$locationChangeStart', function (event, next, current) {
 		 console.log("$locationChangeStart")
@@ -101,11 +113,10 @@ app.run( function ($rootScope, $location, $http) {
 	       );
 	 
 	 
-	 // keep user logged in after page refresh
-//     $rootScope.currentUser = $cookieStore.get('currentUser') || {};
-//     if ($rootScope.currentUser) {
-//         $http.defaults.headers.common['Authorization'] = 'Basic' + $rootScope.currentUser; 
-//     }
+     $rootScope.currentUser = $cookieStore.get('currentUser') || {};
+     if ($rootScope.currentUser) {
+         $http.defaults.headers.common['Authorization'] = 'Basic' + $rootScope.currentUser; 
+     }
 
 });
 

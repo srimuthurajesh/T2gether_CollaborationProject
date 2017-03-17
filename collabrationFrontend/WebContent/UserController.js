@@ -1,5 +1,5 @@
-app.controller(	'UserController', [	'$scope', 'UserService','$location','$rootScope',						'$http',
-						function($scope, UserService, $location, $rootScope,
+app.controller(	'UserController', [	'$scope', 'UserService','$location','$rootScope','$cookieStore',						'$http',
+						function($scope, UserService, $location, $rootScope,$cookieStore,
 								$http) {
 							console.log("UserController...")
 							var self = this;
@@ -72,6 +72,7 @@ app.controller(	'UserController', [	'$scope', 'UserService','$location','$rootSc
 
 													} else { 
 														$rootScope.currentUser = self.user
+														$cookieStore.currentUser=self.user
 														console.log(self.user);
 	                                                 	
 														 $location.path('/');

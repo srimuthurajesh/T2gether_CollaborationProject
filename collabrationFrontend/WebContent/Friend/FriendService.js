@@ -1,6 +1,6 @@
 'use strict';
  console.log("start of friend service")
-app.factory('FriendService', ['$http', '$q','$rootScope', function($http, $q,$rootScope){
+app.factory('FriendService', ['$http', '$q','$rootScope','$cookieStore', function($http, $q,$rootScope,$cookieStore){
 	
 	console.log("FriendService...")
 	

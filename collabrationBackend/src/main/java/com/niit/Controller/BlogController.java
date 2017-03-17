@@ -86,12 +86,21 @@ public class BlogController {
 		
 		return blogModel;
 			}
-	@PostMapping(value = "/userlog")
-			public ResponseEntity<BlogModel> userBlog( HttpSession session) {
+	@GetMapping(value = "/userblog")
+			public List<BlogModel> userBlog( HttpSession session) {
 				String username = (String) session.getAttribute("Username");
+			return blogDAO.getAllblogs(username);
 			
-				return new ResponseEntity<BlogModel>(blogModel, HttpStatus.OK);
-
 	}
+
+@GetMapping(value = "/deleteblog/{blogname}")
+	public void deleteBlog(@PathVariable("blogname")String blogname, HttpSession session) {
+		blogDAO.deleteblog(blogname);
+}
+
+@GetMapping(value = "/editblog/{blogname}")
+	public BlogModel editBlog(@PathVariable("blogname")String blogname, HttpSession session) {
+		return blogDAO.getBlog(blogname);
+}
 			
 }

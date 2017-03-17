@@ -1,12 +1,13 @@
-app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScope',
-            function($scope, BlogService,$location,$routeParams,$rootScope) {
+app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScope','$cookieStore',
+            function($scope, BlogService,$location,$routeParams,$rootScope,$cookieStore) {
 	console.log("inside BlogController...")
           var self = this;
           self.blogModel={blogname:'',blogdescription:'',username:'',blogdateTime:'',blogstatus:'',blogreason:''};
           self.blogs=[];
           self.blogs1=[];
           self.userblog=[];
-          
+          self.editblog=[];
+           
           
          self.getBlog = getblog
 
@@ -17,7 +18,6 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
                 		       function(d) {
                             	   console.log('inside getselected')
                                    
-                            	   self.blogs1 = d;
                             	   console.log(d)
                             	   
                                      $location.path('/viewblog'); 
@@ -62,7 +62,7 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 												
 												self.fetchAllBlogs(); 
 										self.reset();
-													$location.path('/addblog');
+													$location.path('/listblog');
 												
 
 									}}
@@ -70,15 +70,37 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
                   );
           };
 //--------------------------------------------------------------------------UPDATE BLOG--------------------------------------------------------------------------------------          
-         self.updateBlog = function(blog, id){
-              BlogService.updateBlog(blog, id)
-                      .then(
+         self.editBlog = function(blogname){
+        	 console.log('inside editblog')
+              BlogService.editBlog(blogname)
+                      .then( function(d) {
+                    	  console.log('inside edit'+d)
+                    	  console.log(d)
+                    	  self.editblog=d;
+                    	  $location.path("/addblog")
+							
+						 },
                               self.fetchAllBlogs, 
                               function(errResponse){
                                    console.error('Error while updating Blog.');
                               } 
                   );
           };
+          
+          
+//--------------------------------------------------------------------------DELETE BLOG--------------------------------------------------------------------------------------          
+          self.deleteBlog = function(blogname){
+              BlogService.deleteBlog(blogname)
+                      .then( function(d) {
+                    	  $location.path("/userblogs")
+							
+							 },
+                    		  function(errResponse){
+                                   console.error('Error while updating Blog.');
+                              } 
+                  );
+          };   
+          
 
 //--------------------------------------------------------------------------ACCEPT BLOG--------------------------------------------------------------------------------------          
           self.accept = function(id) {
@@ -103,14 +125,14 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 			
 			
 //--------------------------------------------------------------------------USER BLOG--------------------------------------------------------------------------------------          			
-			  self.userblog = function(id) {
+			  self.userblogs = function() {
 					BlogService
-							.userblog()
+							.userblogs()
 							.then(
 									function(d) {
 										self.userblog = d;
-										self.fetchAllBlogs
-										$location.path("/userblogs")
+										console.log('getting userblog my boy')
+										console.log(d)
 										
 									},
 									
@@ -149,7 +171,8 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 			
 
      self.fetchAllBlogs();
- 
+     self.userblogs();
+     
           self.addblog = function() {
            
                   self.createBlog(self.blogModel);
@@ -159,24 +182,7 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
           };
     
                
-          self.edit = function(id){
-              console.log('id to be edited', id);
-              for(var i = 0; i < self.blogs.length; i++){
-                  if(self.blogs[i].id === id) {
-                     self.blogModel = angular.copy(self.blogs[i]);
-                     break;
-                  }
-              }
-          };
-               
-          self.remove = function(id){
-              console.log('id to be deleted', id);
-              if(self.blogModel.id === id) {//clean form if the blog to be deleted is shown there.
-                 self.reset();
-              }
-              self.deleteBlog(id);
-          };
- 
+          
            
           self.reset = function(){
         	  self.blogModel={blogname:'',blogdescription:'',username:'',blogdateTime:'',blogstatus:'',blogreason:''};

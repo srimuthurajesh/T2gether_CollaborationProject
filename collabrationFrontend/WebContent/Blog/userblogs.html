@@ -5,8 +5,9 @@
 
 	
 BLOG page:{{currentUser.username}}-name<br>
-<div ng-repeat="bloglist in ctrl.blogs">
-<a  href="#" ng-click="ctrl.getBlog(bloglist.blogname)"> Blog Title: {{bloglist.blogname}}    -----------------------------------Author :{{bloglist.usename}}---------------- </a>
+<div ng-repeat="bloglist in ctrl.userblog">
+<a  href="#" ng-click="ctrl.getBlog(bloglist.blogname)"> Blog Title: {{bloglist.blogname}} --------Author :{{bloglist.usename}}---------------- </a>  
+<a href="#" ng-click="ctrl.deleteBlog(bloglist.blogname)"> Remove</a>--<a href="#" ng-click="ctrl.editBlog(bloglist.blogname)"> Edit</a>
 </div>
 </div>
 

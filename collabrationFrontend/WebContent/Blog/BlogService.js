@@ -1,5 +1,7 @@
-app.factory('BlogService', ['$http', '$q','$rootScope', 
-                            function($http, $q,$rootScope){
+console.log("start of blog service")
+
+app.factory('BlogService', ['$http', '$q','$rootScope','$cookieStore' ,
+                            function($http, $q,$rootScope,$cookieStore){
 	
 	console.log("inside BlogService...")
 	
@@ -32,18 +34,19 @@ app.factory('BlogService', ['$http', '$q','$rootScope',
                             );
             },
              
-            updateBlog: function(blog, id){
-                    return $http.put(BASE_URL+'/blog/'+id, blog)
+            editBlog: function(blogname){
+                    return $http.get(BASE_URL+'/editblog/'+blogname)
                             .then(
-                                    function(response){
-                                        return response.data;
-                                    }, 
-                                    function(errResponse){
-                                        console.error('Error while updating blog');
-                                        return $q.reject(errResponse);
-                                    }
-                            );
-            },
+                            		 function(response){
+                                     	$rootScope.editblog = response.data
+                                         return response.data;
+                                     }, 
+                                     function(errResponse){
+                                         console.error('Error while edit blog');
+                                         return $q.reject(errResponse);
+                                     }
+                             );
+             },
             
             accept: function(id) {
             	console.log("calling approve ")
@@ -73,8 +76,8 @@ app.factory('BlogService', ['$http', '$q','$rootScope',
                             );
             },
              
-            deleteBlog: function(id){
-                    return $httpdelete(BASE_URL+'/blog/'+id)
+            deleteBlog: function(blogname){
+                    return $http.get(BASE_URL+'/deleteblog/'+blogname)
                             .then(
                                     function(response){
                                         return response.data;
@@ -100,8 +103,8 @@ app.factory('BlogService', ['$http', '$q','$rootScope',
                         );
         },
         
-        userblog: function(){
-            return $http.get  (BASE_URL+'/userblog/')
+        userblogs: function(){
+            return $http.get(BASE_URL+'/userblog/')
                     .then(
                             function(response){
                             	$rootScope.userblog = response.data
