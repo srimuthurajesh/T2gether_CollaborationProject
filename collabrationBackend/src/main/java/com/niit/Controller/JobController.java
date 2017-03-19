@@ -12,13 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.DAO.JobDAO;
+import com.niit.Model.JobApplyModel;
 import com.niit.Model.JobModel;
-import com.niit.Model.UserModel;
 
 @RestController
 public class JobController {
@@ -29,6 +28,9 @@ public class JobController {
 
 	@Autowired
 	private JobModel jobModel;
+	@Autowired
+	private JobApplyModel jobApplyModel;
+
 	@Autowired
 	private JobDAO jobDAO;
 	
@@ -81,4 +83,14 @@ public class JobController {
 	System.out.println("hii am job"+jobname);
 	jobDAO.deletejob(jobname);
 }
+
+@GetMapping(value = "/applyjob/{jobname}")
+	public void apply(@PathVariable("jobname")String jobname, HttpSession session) {
+	String username = (String) session.getAttribute("Username");
+jobApplyModel.setUsername(username);
+jobApplyModel.setJobname(jobname);
+jobDAO.applyjob(jobApplyModel);
+
+}
+
 }

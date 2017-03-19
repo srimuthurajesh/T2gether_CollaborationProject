@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.Model.BlogModel;
+import com.niit.Model.CommentModel;
 import com.niit.Model.FriendModel;
 
 @EnableTransactionManagement
@@ -76,5 +77,16 @@ return query.list();
 			blogModel=(BlogModel) session.createQuery(hql).uniqueResult();
 			sessionFactory.getCurrentSession().delete(blogModel);
 				}
-	
-}
+	@Transactional
+	public void addcomment(CommentModel commentModel){
+		System.out.println(commentModel.getBlogname());
+		System.out.println(commentModel.getComments());				
+				System.out.println(commentModel.getUsername());
+				sessionFactory.getCurrentSession().save(commentModel);	}
+
+@Transactional
+public List<CommentModel> getcomments(String blogname){
+	String hql="from CommentModel where blogname= '"+blogname+"'";
+	List<CommentModel> list= sessionFactory.openSession().createQuery(hql).list();
+	return list;
+}}

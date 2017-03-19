@@ -5,6 +5,7 @@
 		job page:{{currentUser.username}}-name<br>
 <div ng-repeat="joblist in ctrl.jobs">
 <a  href="#" ng-click="ctrl.getJob(joblist.jobname)"> job Title: {{joblist.jobname}}    -----------------------------------post by :{{joblist.usename}}---------------- </a>
+<a href="#" ng-click="ctrl.applyjob(joblist.jobname)">Apply</a>
 </div>
 </div>
 

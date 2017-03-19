@@ -10,8 +10,4 @@ public interface FriendDAO {
 	public void acceptfriend(FriendModel friendModel);
 	public List<FriendModel> friendslist(String username);
 	public void unfriend(String username1, String username2);
-
-
-		
-		
 }

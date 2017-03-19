@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.Model.BlogModel;
+import com.niit.Model.JobApplyModel;
 import com.niit.Model.JobModel;
 
 @EnableTransactionManagement
@@ -75,5 +76,12 @@ return query.list();
 			jobModel=(JobModel) session.createQuery(hql).uniqueResult();
 			sessionFactory.getCurrentSession().delete(jobModel);
 				}
+
+	//------------------------------------------------------SAVE Job---------------------------------------------------------------
+	@Transactional
+	public void applyjob(JobApplyModel jobApplyModel){
+		sessionFactory.getCurrentSession().save(jobApplyModel);	
+
+	}
 	
 }

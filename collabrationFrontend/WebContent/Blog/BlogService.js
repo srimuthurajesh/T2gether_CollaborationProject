@@ -103,6 +103,34 @@ app.factory('BlogService', ['$http', '$q','$rootScope','$cookieStore' ,
                         );
         },
         
+        
+        addcomment: function(commentModel){
+console.log('inside addcomemnt blogservices boy'+commentModel.comments)
+            return $http.post(BASE_URL+'/addcomment',commentModel)
+                    .then(
+                            function(response){
+                                return response.data;
+                            }, 
+                            function(errResponse){
+                                console.error('Error while getting blog');
+                                return $q.reject(errResponse);
+                            }
+                    );
+    }, 
+    getcomments: function(blogname){
+    	console.log('inside getcomments service my rajesh')
+		
+        return $http.get  (BASE_URL+'/getcomments/'+blogname)
+                .then(
+                        function(response){
+                        	$rootScope.comment = response.data
+                            return response.data;
+                        }, 
+                        function(errResponse){
+                            console.error('Error while getting blog');
+                            return $q.reject(errResponse);
+                        }
+                );},
         userblogs: function(){
             return $http.get(BASE_URL+'/userblog/')
                     .then(

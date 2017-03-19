@@ -17,9 +17,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.niit.DAO.UserDAO;
 import com.niit.DAO.UserDAOImpl;
 import com.niit.Model.BlogModel;
-import com.niit.Model.EventModel;
+import com.niit.Model.CommentModel;
 import com.niit.Model.ForumModel;
 import com.niit.Model.FriendModel;
+import com.niit.Model.JobApplyModel;
 import com.niit.Model.JobModel;
 import com.niit.Model.UserModel;
 
@@ -50,10 +51,11 @@ public class ApplicationContextConfig {
 	 LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 	 sessionBuilder.addProperties(getHibernateProperties());
 	sessionBuilder.addAnnotatedClasses(UserModel.class);
-	sessionBuilder.addAnnotatedClasses(EventModel.class);
 	sessionBuilder.addAnnotatedClasses(ForumModel.class);
 	sessionBuilder.addAnnotatedClasses(FriendModel.class);
 	sessionBuilder.addAnnotatedClasses(JobModel.class);
+	sessionBuilder.addAnnotatedClasses(CommentModel.class);
+	sessionBuilder.addAnnotatedClasses(JobApplyModel.class);
 	sessionBuilder.addAnnotatedClasses(BlogModel.class);
 	
      return sessionBuilder.buildSessionFactory();

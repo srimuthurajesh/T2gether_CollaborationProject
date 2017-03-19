@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.DAO.BlogDAO;
 import com.niit.Model.BlogModel;
+import com.niit.Model.CommentModel;
 
 @RestController
 public class BlogController {
@@ -101,6 +103,23 @@ public class BlogController {
 @GetMapping(value = "/editblog/{blogname}")
 	public BlogModel editBlog(@PathVariable("blogname")String blogname, HttpSession session) {
 		return blogDAO.getBlog(blogname);
+}
+
+
+@PostMapping(value = "/addcomment")
+	public void addcomment(@RequestBody CommentModel commentModel, HttpSession session) {
+	System.out.println("hi am"+commentModel);
+	System.out.println(commentModel.getBlogname());
+	System.out.println(commentModel.getComments());				
+	String username = (String) session.getAttribute("Username");
+commentModel.setUsername(username);
+blogDAO.addcomment(commentModel);
+}
+
+@GetMapping(value = "/getcomments/{blogname}")
+public List<CommentModel> getcomments(@PathVariable ("blogname")String blogname) {
+System.out.println("inside controller getcomments");
+	return blogDAO.getcomments(blogname);
 }
 			
 }

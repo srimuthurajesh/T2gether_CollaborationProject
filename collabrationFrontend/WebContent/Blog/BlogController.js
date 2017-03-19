@@ -3,21 +3,22 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 	console.log("inside BlogController...")
           var self = this;
           self.blogModel={blogname:'',blogdescription:'',username:'',blogdateTime:'',blogstatus:'',blogreason:''};
+        self.commentModel={comments:'',username:'',commentid:''}
           self.blogs=[];
-          self.blogs1=[];
+        self.comment=[];
           self.userblog=[];
           self.editblog=[];
            
-          
-         self.getBlog = getblog
-
+          self.getBlog = getblog
 //-------------------------------------------------------------------------GET BLOG ---------------------------------------------------------------------------------------
           function getblog(blogname){
         	  BlogService.getblog(blogname)
                   .then(  
                 		       function(d) {
                             	   console.log('inside getselected')
-                                   
+                                  console.log(d.blogname)
+                                  
+                            	   self.getcomments(d.blogname)
                             	   console.log(d)
                             	   
                                      $location.path('/viewblog'); 
@@ -164,8 +165,42 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 			
 			
 			
+			self.addcomment = function(commentModel) {
+				console.log('this is  '+commentModel.comments)
+				BlogService
+						.addcomment(commentModel)
+						.then(
+								function(d) {
+							//self.getcomments(commmentModel.blogname)
+								//	$route.reload();
+								},
+								function(errResponse) {
+									console
+											.error('Error while adding comment.');
+								});
+			};
+
 			
 			
+			self.getcomment = function(blogname) {
+				console.log('inside getcomments my rajesh')
+				BlogService
+						.getcomments(blogname)
+						.then(
+								
+								function(d) {
+									console.log('hiii amd inside function of getcomment')
+									self.comment = d;
+									console.log(d)
+									$location.path("/comments")
+									
+								},
+								function(errResponse) {
+									console
+											.error('Error while adding comment.');
+								});
+			};
+
 			
 			
 			
@@ -180,6 +215,22 @@ app.controller('BlogController', ['$scope', 'BlogService','$location','$rootScop
 				
             
           };
+          
+
+          self.getcomments = function() {
+           
+                  self.getcomment('sampe');
+              	self.reset();
+				
+            
+          }; 
+          self.addcomments = function() {
+              
+              self.addcomment(self.commentModel);
+          	//self.reset();
+			
+        
+      };
     
                
           

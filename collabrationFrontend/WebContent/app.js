@@ -28,6 +28,10 @@ app.config(function($routeProvider) {
 		    templateUrl : 'Blog/listblog.html',
 		    controller  : 'BlogController'
 		  })
+		    .when('/comments', {
+		    templateUrl : 'Blog/comments.html',
+		    controller  : 'BlogController'
+		  })
 		  
 		   .when('/addjob', {
 		    templateUrl : 'Job/addjob.html',
