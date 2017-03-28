@@ -11,8 +11,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.Model.BlogModel;
+import com.niit.Model.FriendModel;
 import com.niit.Model.JobApplyModel;
 import com.niit.Model.JobModel;
+import com.niit.Model.UserModel;
 
 @EnableTransactionManagement
 @Repository("JobDAO")
@@ -81,6 +83,14 @@ return query.list();
 	@Transactional
 	public void applyjob(JobApplyModel jobApplyModel){
 		sessionFactory.getCurrentSession().save(jobApplyModel);	
+
+	}
+	@Transactional
+	public List<JobApplyModel> applyjobbyid(String username){
+		String hql = "from JobApplyModel where username = '" + username + "'" ;
+		List<JobApplyModel> list= sessionFactory.openSession().createQuery(hql).list();
+
+		return list;
 
 	}
 	

@@ -1,22 +1,100 @@
+<img src="resources/images/blog.jpg" style="width:100%"/>
 
-<div ng-controller="UserController as ctrl">
 
-<h3>Login Here</h3>
-	<form name="form" ng-submit="ctrl.login()" role="form">
-		
-<label for="">Username</label> 
-<input type="text"	name="username" id="username" class="form-control"
-					ng-model="ctrl.user.username" required  /> 					
-		
-
+				<section>
+					<div class="container">
+				<div ng-controller="UserController as ctrl">
+						
+						<div class="row">
+<div class="col=-md-12">
+							<div class="fh5co-spacer fh5co-spacer-sm"></div>	
+							<div class="col-md-5">
+								  <h2>Login</h2>
+               <form  ng-submit="ctrl.login()" >
+									
+<label for="">Username</label> <input type="text"
+		name="password" id="text" placeholder="Enter username" class="form-control"
+		ng-model="ctrl.user.username" required /> 
+<br>
 <label for="">Password</label> <input type="password"
-		name="password" id="password" class="form-control"
-		ng-model="ctrl.user.password" required /> 
-			<br>
+		name="password" id="password" placeholder="Enter password" class="form-control"
+		ng-model="ctrl.user.password" required /> <br>
+					
 	<button type="submit"		
 					class="btn btn-primary">Login</button>
-				<a href="#/register" class="btn btn-link">Register</a>
-		</form>
-	
-</div>
+		
+									</form></div>
+										<div class="col-md-2"><br><br><br><br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Or)</b></div>
+							<div class="col-md-5">  <h2>Register</h2>
+               <div ng-controller="UserController as ctrlreg">
+               
 
+	<form name="form" ng-submit="ctrlreg.register()" role="form">
+				
+
+<label for="">Username</label> <input type="text"
+		name="password" id="password" minlength="4" placeholder="Enter username" class="form-control"
+		ng-model="ctrlreg.user.username" required /> 
+			<br>
+			
+<label for="">Firstname</label> <input type="text"
+		 placeholder="First Name" path="firstname"  placeholder="First Name" title="FirstName should not have any numerical characters" pattern="[a-zA-Z]+" class="form-control"
+		ng-model="ctrlreg.user.firstname"  /> 
+			
+			<br>
+<label for="">Secondname</label> <input type="text"
+		 class="form-control"  placeholder="Second Name"
+		ng-model="ctrlreg.user.secondname"  /> 
+			<br>
+<label for="">Password</label> <input type="password" placeholder="Enter password"
+		 class="form-control" id="password"
+		ng-model="ctrlreg.user.password" required /> <span id="result"></span>
+			<br>
+<label for="">Confirm Password</label> <input type="password"
+		name="password" id="confirmpassword" class="form-control" placeholder="Re-enter password"
+		 required /> <span id="resultconfirmpassword"></span>
+			<br>
+  
+  
+  
+  
+  
+  	<label for="">DOB</label> <input type="date"
+		class="form-control"
+		ng-model="ctrlreg.user.dob" required /> 
+			<br>
+			
+			
+			
+ 
+<label for="">Email</label> <input type="email"
+ class="form-control" placeholder="Enter email" id="emailid"
+		ng-model="ctrlreg.user.email" required /> <span id="resultemail"></span>
+			<br>	
+			<label for="">Mobile</label> <input type="text" placeholder="Enter Mobile number"
+		 class="form-control" minlength="10" maxlength="10" 
+		ng-model="ctrlreg.user.mobile" required /> 
+			<br>
+			
+		
+					
+	<button type="submit"		
+					class="btn btn-primary">Register</button>
+		
+		</form>
+		</div></div></div></div></section>
+									<footer id="fh5co-footer">
+					<div class="container">
+						
+						<ul class="fh5co-social-icons">
+							<li><a href="https://www.twitter.com/" target="_blank"><i class="ti-twitter-alt"></i></a></li>
+							<li><a href="https://www.facebook.com/" target="_blank"><i class="ti-facebook"></i></a></li>
+							<li><a href="https://www.github.com/" target="_blank"><i class="ti-github"></i></a></li>
+							<li><a href="https://www.linkedin.com/" target="_blank"><i class="ti-linkedin"></i></a></li>
+						</ul>
+						<p class="text-muted fh5co-no-margin-bottom text-center"><small>&copy; Copyrigth <em>to</em> T2GETHER.COM <br> Created by RajeshInfoTech.Inc</a></small></p>
+
+					</div>
+				</footer>
+			
+		

@@ -1,29 +1,79 @@
-
-
+<img src="resources/images/blog.jpg" style="width:100%"/>
+		
 <div ng-controller="BlogController as ctrl">
 
-	Add Blog:<br>
-	<form name="form" ng-submit="ctrl.addblog()" role="form">
-		
-<label for="">Blog title</label>
-<input type="text"	 class="form-control"
-					ng-model="ctrl.blogModel.blogname" ng-init="ctrl.blogModel.blogname=editblog.blogname" value="hii vnakamdfd"  required /> 		
+
+
+
+
 
 				
+				<section>
+					<div class="container">
+						
+						<div class="row">
 
-<input type="hidden" 	value="rajesh"  class="form-control"
-					ng-model="ctrl.blogModel.username"  /> 					
-		
+							<div class="fh5co-spacer fh5co-spacer-sm"></div>	
+							<div class="col-md-8">
+								<form ng-submit="ctrl.addblog()">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label for="name" class="sr-only">Blog Title : </label>
+											<input placeholder="Give a title here" id="name" type="text" ng-model="ctrl.blogModel.blogname"  ng-init="ctrl.blogModel.blogname=editblog.blogname" class="form-control input-lg">
+										</div>	
+									</div>
+									
+									<div class="col-md-12">
+										<div class="form-group">
+											<label for="message" class="sr-only">Blog Content : </label>
+											<textarea placeholder="Enter Blog Content here" id="message" class="form-control input-lg" ng-model="ctrl.blogModel.blogdescription"  ng-init="ctrl.blogModel.blogdescription=editblog.blogdescription" rows="7"></textarea>
+										</div>	
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="submit" class="btn btn-primary btn-lg " value="Add Blog">
 
-<label for="">Blog content</label>
- <textarea 
-		name="blogdescription" class="form-control"
-		ng-model="ctrl.blogModel.blogdescription" required  ng-init="ctrl.blogModel.blogdescription=editblog.blogdescription" cols="50" rows="10"> </textarea>
+										</div>	
+									</div>
+									
+									
+								</form>	
+								
+							</div>
+							<div class="col-md-4">
+								<h3>Post Yout Blog</h3>
+								<p>Earn from your blogs, share your opinions and views with others</p>
+								<p>
+									<a href="#">help@t2gether.com</a>
+								</p>
+							</div>
+
+							<div class="fh5co-spacer fh5co-spacer-md"></div>	
+
+						</div>
+						
+					</div>
+				</section>
+
+
+</div>
+
+
+
+			<footer id="fh5co-footer">
+					<div class="container">
+						
+						<ul class="fh5co-social-icons">
+							<li><a href="https://www.twitter.com/" target="_blank"><i class="ti-twitter-alt"></i></a></li>
+							<li><a href="https://www.facebook.com/" target="_blank"><i class="ti-facebook"></i></a></li>
+							<li><a href="https://www.github.com/" target="_blank"><i class="ti-github"></i></a></li>
+							<li><a href="https://www.linkedin.com/" target="_blank"><i class="ti-linkedin"></i></a></li>
+						</ul>
+						<p class="text-muted fh5co-no-margin-bottom text-center"><small>&copy; Copyrigth <em>to</em> T2GETHER.COM <br> Created by RajeshInfoTech.Inc</a></small></p>
+
+					</div>
+				</footer>
 			
-			<br>
-	<button type="submit"		
-					class="btn btn-primary">Add blog</button>
-				
-		</form>
-	</div>
+		
+			
 

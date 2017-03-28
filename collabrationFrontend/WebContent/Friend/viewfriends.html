@@ -1,10 +1,50 @@
-<div ng-controller="FriendController as ctrl">
-	Friend List:<br>
-	user page:{{currentUser.username}}-name<br>
-<div ng-repeat="friendlist in ctrl.friends">
-<a  href="#/chat">  Username: {{friendlist.username2}}   ---------------- </a>
+<img src="resources/images/blog.jpg" style="width:100%"/>
+		
 
-<!-- <a  href="#/chat" ng-click="ctrl.getuser(friendlist.username2)"> Username: {{friendlist.username2}}   ---------------- </a> -->
-<a href="#" ng-click="ctrl.unfriend(friendlist.username2)" >unfriend </a>
-</div>
+<div ng-controller="FriendController as ctrl">
+		<section>
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8" id="fh5co-content">
+								<br><br><h2>My Friends<input type="text"
+		 id="text" placeholder="Search Friends here" class="form-control"
+		ng-model="searchText" style="width:50%;position:relative;left:460px" /> </h2>
+							
+								<div class="row"><div ng-repeat="userlist in ctrl.friends|filter:searchText">
+									<div class="col-md-12">
+										<div class="page-header"><p><span class="glyphicon glyphicon-align-left"></span>
+										<b>Profile :</b><font style="font-size:25px;">&nbsp;&nbsp;&nbsp;{{userlist.username2}}</font></p> 
+						
+<!-- 		<a href="#" ng-click="ctrl.getuser(userlist.username2)">View Profile</a> -->
+<a href="#" ng-click="ctrl.unfriend(userlist.username2)"><b>Unfriend</b></a>
+<div ng-if="userlist.is_online=='y' "><b>Online</b>	 </div>
+<div ng-if="userlist.is_online=='N' "><b>Offline	</b> </div>
+
+									</div>
+									</div>
+								</div>
+
+							</div></div></div>
+							</div>					
+				</section>
+
+
+
+			<footer id="fh5co-footer">
+					<div class="container">
+						
+						<ul class="fh5co-social-icons">
+							<li><a href="https://www.twitter.com/" target="_blank"><i class="ti-twitter-alt"></i></a></li>
+							<li><a href="https://www.facebook.com/" target="_blank"><i class="ti-facebook"></i></a></li>
+							<li><a href="https://www.github.com/" target="_blank"><i class="ti-github"></i></a></li>
+							<li><a href="https://www.linkedin.com/" target="_blank"><i class="ti-linkedin"></i></a></li>
+						</ul>
+						<p class="text-muted fh5co-no-margin-bottom text-center"><small>&copy; Copyrigth <em>to</em> T2GETHER.COM <br> Created by RajeshInfoTech.Inc</a></small></p>
+
+					</div>
+				</footer>
+			
+		
+		
+	
 </div>

@@ -58,8 +58,39 @@ return sessionFactory.getCurrentSession().get(UserModel.class, username);
 		sessionFactory.getCurrentSession().save(userModel);
 		return true;
 	}catch(Exception e){
+		System.out.println("error has been catched");
+		return false;
+	}
+		
+	}
+	
+	@Transactional
+	public boolean saveonline(UserModel userModel) {
+	try{
+		userModel.setIs_online('y');
+		sessionFactory.getCurrentSession().saveOrUpdate(userModel);
+		return true;
+	}catch(Exception e){
+		
+	}
+		return false;
+	}
+	@Transactional
+	public boolean offline(String username) {
+	try{
+		String hql = "from UserModel where username = '" + username + "'";
+		Query query =  sessionFactory.getCurrentSession().createQuery(hql);
+		UserModel userModel=(UserModel) query.uniqueResult();
+
+	System.out.println("inside logout");
+	userModel.setUsername(username);	
+	userModel.setIs_online('N');
+		sessionFactory.getCurrentSession().saveOrUpdate(userModel);
+		return true;
+	}catch(Exception e){
 		
 	}
 		return false;
 	}
 }
+

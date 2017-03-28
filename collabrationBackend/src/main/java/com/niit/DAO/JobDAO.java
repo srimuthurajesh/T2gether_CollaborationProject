@@ -13,5 +13,7 @@ public interface JobDAO {
 	public boolean update(JobModel JobModel);
 	public void deletejob(String jobname);		
 	public void applyjob(JobApplyModel JobApplyModel);
+	public List<JobApplyModel> applyjobbyid(String username);
+	
 
 }

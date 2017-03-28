@@ -1,11 +1,94 @@
+	
+<img src="resources/images/blog.jpg" style="width:100%"/>
 
 
 <div ng-controller="JobController as ctrl">
 
-		job page:{{currentUser.username}}-name<br>
-<div ng-repeat="joblist in ctrl.jobs">
-<a  href="#" ng-click="ctrl.getJob(joblist.jobname)"> job Title: {{joblist.jobname}}    -----------------------------------post by :{{joblist.usename}}---------------- </a>
-<a href="#" ng-click="ctrl.applyjob(joblist.jobname)">Apply</a>
-</div>
-</div>
 
+
+
+
+				<section>
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8" id="fh5co-content">
+								<br><br><h2>All Jobs
+								
+								<input type="text"
+		 id="text" placeholder="Search Jobs here" class="form-control"
+		ng-model="searchText" style="width:50%;position:relative;left:460px" /> </h2>
+								
+  							<div class="row"><div ng-repeat="joblist in ctrl.jobs|filter:searchText">
+									<div class="col-md-12">
+										<div class="page-header"><p><span class="glyphicon glyphicon-align-left"></span>
+										<b>Job Post :</b><font style="font-size:25px;">&nbsp;&nbsp;&nbsp;{{joblist.jobname}}</font></p> 
+<!-- 								<div ng-if="$root.currentUser.role =='ROLE_ADMIN' ">						 -->
+<!-- <a href="#" ng-click="ctrl.deletejob(joblist.jobname)">Remove Job</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<!--   <a href="#" ng-click="ctrl.editjob(joblist.jobname)">Edit Job</a> -->
+<!--   </div> -->
+		Details :{{joblist.jobdescription}}
+   <a ng-show = "appliedjob.jobname.indexOf(joblist.jobname)!=-1" href="#" ng-click="ctrl.applyjob(joblist.jobname)"><b><div style="text-align:right">Apply this Job :</b></a></div></p></div>
+									</div>
+									</div>
+								</div>
+
+							</div>
+							<div class="col-md-3  col-md-offset-1" id="fh5co-sidebar">
+
+								<div class="fh5co-side-section fh5co-nav-links">
+									<h2 class="fh5co-uppercase-heading-sm">Side Links</h2>
+									<ul>
+										<li class="active"><a href="#">Design is the Creation</a></li>
+										<li><a href="#">Construction of an Objecton</a></li>
+										<li><a href="#">Architectural Blueprints</a></li>
+										<li><a href="#">Circuit Diagrams</a></li>
+									</ul>
+								</div>
+								<div class="fh5co-spacer fh5co-spacer-sm"></div>
+								<div class="fh5co-side-section">
+									<h2 class="fh5co-uppercase-heading-sm">Sweet Little &lt;p&gt;</h2>
+									<p>Magnam consectetur quia illo rerum aliquam doloremque omnis assumenda quasi enim ex totam provident dignissimos numquam laudantium</p>
+									<p><a href="#">Go! click me</a></p>
+								</div>
+								<div class="fh5co-spacer fh5co-spacer-sm"></div>
+								<div class="fh5co-side-section">
+									<h2 class="fh5co-uppercase-heading-sm">Image Magnific Popup</h2>
+									
+									
+									<div class="fh5co-spacer fh5co-spacer-xxs"></div>
+									<div class="row">
+										<div class="col-md-12">
+										<p><a href="images/project_5.jpg" class="image-popup"><img src="images/project_5.jpg" alt="Image" class="img-responsive"></a></p>
+										</div>
+									
+										<div class="col-md-6">
+											<p><a href="images/project_6.jpg" class="image-popup"><img src="images/project_6.jpg" alt="Image" class="img-responsive"></a></p>
+										</div>
+										<div class="col-md-6">
+											<a href="images/project_7.jpg" class="image-popup"><img src="images/project_7.jpg" alt="Image" class="img-responsive"></a></p>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="fh5co-spacer fh5co-spacer-md"></div>
+					</div>
+					
+				</section>
+
+<footer id="fh5co-footer">
+					<div class="container">
+						
+						<ul class="fh5co-social-icons">
+							<li><a href="https://www.twitter.com/" target="_blank"><i class="ti-twitter-alt"></i></a></li>
+							<li><a href="https://www.facebook.com/" target="_blank"><i class="ti-facebook"></i></a></li>
+							<li><a href="https://www.github.com/" target="_blank"><i class="ti-github"></i></a></li>
+							<li><a href="https://www.linkedin.com/" target="_blank"><i class="ti-linkedin"></i></a></li>
+						</ul>
+						<p class="text-muted fh5co-no-margin-bottom text-center"><small>&copy; Copyrigth <em>to</em> T2GETHER.COM <br> Created by RajeshInfoTech.Inc</a></small></p>
+
+					</div>
+				</footer>
+			
+		

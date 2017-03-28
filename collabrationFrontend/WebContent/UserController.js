@@ -1,4 +1,4 @@
-app.controller(	'UserController', [	'$scope', 'UserService','$location','$rootScope','$cookieStore',						'$http',
+app.controller(	'UserController', [	'$scope', 'UserService','$location','$rootScope','$cookieStore','$http',
 						function($scope, UserService, $location, $rootScope,$cookieStore,
 								$http) {
 							console.log("UserController...")
@@ -20,38 +20,23 @@ app.controller(	'UserController', [	'$scope', 'UserService','$location','$rootSc
 							
 							this.users = []; //json array
 							
-							 $scope.orderByMe = function(x) {
-							        $scope.myOrderBy = x;
-							    }
-
 							self.createUser = function(user) {
 								UserService
 										.createUser(user)
 										.then(
 												function(d)
-												{
+												
+												{   													self.user = d;
+
+													console.log("hiiii"+self.user.errorCode)
+													if(self.user.errorCode!="404"){
 													alert("Thank you for registration")
-												},
-												function(errResponse) {
-													console
-													alert("not registered")
-													
+													}else{
+														alert(self.user.username +" already exist, Try new username")	
+													}														
 												});
 							};							
-							self.createblog = function(user) {
-								UserService
-										.createblog(user)
-										.then(
-												function(d)
-												{
-													alert("Thank you for registration")
-												},
-												function(errResponse) {
-													console
-													alert("not registered")
-													
-												});
-							};							
+						
 
 							self.authenticate = function(user) {
 								console.log("authenticate...")
@@ -60,11 +45,14 @@ app.controller(	'UserController', [	'$scope', 'UserService','$location','$rootSc
 										.then(
 
 												function(d) {
-													
+
 													self.user = d;
+													console.log(self.user.errorMessage+"invalie "+self.user.errorCode)
+
 													if (self.user.errorCode == "404")
 
 													{
+														console.log(self.user.errorMessage+"invalie "+self.user.errorCode)
 														alert(self.user.errorMessage)
 
 														self.user.username = "";
@@ -84,17 +72,19 @@ app.controller(	'UserController', [	'$scope', 'UserService','$location','$rootSc
 												});
 							};
 
-							self.logout = function() {
-								console.log("logout")
+							self.logouts = function() {
+								console.log("inside logout")
+UserService.logout().then(
+		function(d){
 //								$rootScope.currentUser = {};
 								 $rootScope.currentUser = undefined
-							//	$cookieStore.remove('currentUser');
-								UserService.logout()
-								$location.path('/');
-
-							}
-
-						
+								$cookieStore.remove('currentUser');
+								//UserService.logout()
+								//$location.path('/login');
+								 $location.path('/');
+									
+							});
+							};
 
 							
 							self.login = function() {
@@ -107,16 +97,16 @@ app.controller(	'UserController', [	'$scope', 'UserService','$location','$rootSc
 								{
 									self.createUser(self.user);
 								}
-								self.reset();
 							};
 
-
-							self.adddblog = function() {
+							self.logout = function() {
 								{
-									self.createblog(self.user);
+									self.logouts();
 								}
-								self.reset();
 							};
+
+
+						
 
 						
 						} ]);

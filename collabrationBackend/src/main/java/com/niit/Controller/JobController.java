@@ -93,4 +93,13 @@ jobDAO.applyjob(jobApplyModel);
 
 }
 
+
+@GetMapping(value = "/applyjobbyid")
+	public List<JobApplyModel> applybyuid(HttpSession session) {
+	String username = (String) session.getAttribute("Username");
+jobApplyModel.setUsername(username);
+return jobDAO.applyjobbyid(username);
+
+}
+
 }

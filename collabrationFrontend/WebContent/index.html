@@ -1,16 +1,32 @@
-<html>
 
-<head>
-<title>Collabration</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   
-<link rel="stylesheet" href="resources/css/bootstrap.css">
-<!-- <script src="resources/js/boostrap.js"></script> -->
-<!-- <script src="resources/js/jquery.js"></script> -->
+<!DOCTYPE html>
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+  	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  	<link rel="shortcut icon" href="resources/images/favicon.ico">
+
+  	<!-- Google Webfont -->
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400|Crimson+Text' rel='stylesheet' type='text/css'>
+	<!-- Themify Icons -->
+	<link rel="stylesheet" href="resources/css/themify-icons.css">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="resources/css/bootstrap.css">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="resources/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="resources/css/owl.theme.default.min.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="resources/css/magnific-popup.css">
+	<!-- Superfish -->
+	<link rel="stylesheet" href="resources/css/superfish.css">
+	<!-- Easy Responsive Tabs -->
+	<link rel="stylesheet" href="resources/css/easy-responsive-tabs.css">
+
+	
+
+	<!-- Theme Style -->
+	<link rel="stylesheet" href="resources/css/style.css">
+
 <script src="resources/angular.js"></script>  
 <script src="resources/angular-route.js"></script>
 <!-- <script src="resources/angular-cookies.js"></script> -->
@@ -22,69 +38,125 @@
 </head>
 <body ng-app="myApp" ng-controller="UserController as ctrl">
 
-  
-  <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-<!--       <a class="navbar-brand" href="#">Collobration site</a> -->
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="">Blog
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#/addblog">Add blogs</a></li>
-          <li><a href="#/listblog">View all blog</a></li>
-          <li><a href="#/userblogs">My blogs</a></li>
-          </ul>
-      </li>
-        <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="">Job
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#/listjob">List Job</a></li>
-          <li><a href="#/addjob">Add Job</a></li>
-          </ul>
-      </li>
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="">Friend
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#/viewalluser">View All users</a></li>
-          <li><a href="#/viewnotifications">View notifications</a></li>
-         
-          <li><a href="#/viewfriends">View my friends</a></li>
-          <li><a href="#/chat">Chat</a></li>
-          
-          </ul>
-      </li>
-      
-         <li class=""><a href="#/forum">Forum</a></li></ul>
+		<!-- START #fh5co-header -->
+			
+			
+			<header id="fh5co-header-section" role="header" class="" >
+				<div    class="container-fluid" style="padding-left:100px;padding-right:170px">
+					
+					<!-- START #fh5co-logo -->
+					<h1 id="fh5co-logo" class="pull-left"><a href="#/"><strong>T2gether</strong></a></h1>
+					
+					<!-- START #fh5co-menu-wrap -->
+					<nav id="fh5co-menu-wrap" role="navigation">
+						<ul class="sf-menu" id="fh5co-primary-menu">
+							<li class="active">
+								<a href="#/"><b>Home</b></a>
+							</li>
+							<li class="active">
+								<a href="#" class="fh5co-sub-ddown"><b>Blogs</b></a>
+								 <ul class="fh5co-sub-menu">
+								 	<li><a href="#/listblog" style="font-size:15px"><b>List Blogs</b></a></li>
+								 	<li><a href="#/addblog" style="font-size:15px"><b>Add Blogs</b></a></li>
+							<li><a href="#/userblog" style="font-size:15px"><b>My Blogs</b></a></li>
+							
+								</ul>
+							</li>
+							<li class="active">
+								<a href="#" class="fh5co-sub-ddown"><b>Jobs</b></a>
+								 <ul class="fh5co-sub-menu">
+								 	<li><a href="#/listjob" style="font-size:15px"><b>List Jobs</b></a></li>
+								 	<li><a href="#/addjob" style="font-size:15px"><b>Add Jobs</b></a></li>
+								 	<li><a href="#/listjobapply" style="font-size:15px"><b>List Job Apply</b></a></li>
+								</ul>
+							</li>
+							
+							<li class="active">
+								<a href="#" class="fh5co-sub-ddown"><b>Friends</b></a>
+								 <ul class="fh5co-sub-menu">
+								 	<li><a href="#/viewalluser" style="font-size:15px"><b>View All Users</b></a></li>
+								 	<li><a href="#/viewfriends" style="font-size:15px"><b>View Friends</b></a></li>
+	<li><a href="#/viewnotifications" style="font-size:15px"><b>View Friend Requests</b></a></li>
+<!-- 	<li><a href="#/onlinefriends" style="font-size:15px"><b>Online Friends </b></a></li> -->
+														
+							</ul>
+							</li>
+							
+							
+							<li class="active"><a href="#/forum"><b>Forum</b></a></li>
+<!-- 							<div > -->
+							
+							 <li ng-if="!$root.currentUser.username.length " class="dropdown active">
+                     <a href="" class="dropdown-toggle" data-toggle="dropdown"><b>Sign in</b> </a>
+                     <ul class="dropdown-menu dropdown-menu-left" style="padding: 15px;min-width: 260px;">
+                        <li>
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <form class="form" role="form" method="post" ng-submit="ctrl.login()"  accept-charset="UTF-8" id="login-nav">
+                                    <div class="form-group">
+                                       <label class="sr-only" for="exampleInputEmail2">Enter Username</label>
+                                       <input type="text" class="form-control" id="exampleInputEmail2" ng-model="ctrl.user.username"  placeholder="Username" style="padding:10px" required>
+                                    </div>
+                                    <div class="form-group">
+                                       <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                       <input type="password" class="form-control" id="exampleInputPassword2" ng-model="ctrl.user.password" placeholder="Password" style="padding:10px" required>
+                                    </div>
+									
+                                    <div class="form-group">
+                                       <button type="submit" class="btn btn-success btn-block" style="  height:33px;">Sign in</button>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New User? Register Here
+                        <li class="divider"></li>
+                        <li>
+                         <a href="#/login">  <input class="btn btn-primary btn-block" type="button" id="sign-in-google" style="  height:33px;" value="Register"></a>
+                           </li>
+                     </ul>
+                  </li>
+                			
+                  	<li class="active" ng-if="$root.currentUser.username.length "><a href="contact.html"><b>{{currentUser.username}}' account</b></a></li>
+                    <li class="active" ng-if="$root.currentUser.username.length "><a href="#" ng-click="ctrl.logout()"><b>Logout</b></a></li>
+						
+               </ul>
+            </div>
+							
+						</ul>
+					</nav>
 
-    <div ng-if="!$root.currentUser.username.length ">
-  <ul class="nav navbar-nav navbar-right">
-<li class=""><a href="#/login">Login</a></li>
-      
-</div>
-<div ng-if="$root.currentUser.username.length ">
-  <ul class="nav navbar-nav navbar-right">
-
-      <li class=""><a href="#">{{currentUser.username}}'s account</a></li>
-      <li class=""><a href="#/logout" ng-click="ctrl.logout()">Logout</a></li>
-</div>      
-       </ul>
-  </div>
-</nav>
-      
-
-<div class="container">
-<div class="row">
-<div class="col-md-6">
-    <div ng-view></div>
-</div></div></div>
+				</div>
+			</header>
+		
+		
+		
+      <div ng-view></div>
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	
+		
 	<script src="app.js"></script>
 	<script src="UserController.js"></script>
 	<script src="UserService.js"></script>
@@ -97,8 +169,28 @@
 	<script src="Chat/ChatController.js"></script>
 	<script src="Chat/ChatService.js"></script>
 	
+	
+		
+			
+		<!-- jQuery -->
+		<script src="resources/js/jquery-1.10.2.min.js"></script>
+		<!-- jQuery Easing -->
+		<script src="resources/js/jquery.easing.1.3.js"></script>
+		<!-- Bootstrap -->
+		<script src="resources/js/bootstrap.js"></script>
+		<!-- Owl carousel -->
+		<script src="resources/js/owl.carousel.min.js"></script>
+		<!-- Magnific Popup -->
+		<script src="resources/js/jquery.magnific-popup.min.js"></script>
+		<!-- Superfish -->
+		<script src="resources/js/hoverIntent.js"></script>
+		<script src="resources/js/superfish.js"></script>
+		<!-- Easy Responsive Tabs -->
+		<script src="resources/js/easyResponsiveTabs.js"></script>
+		<!-- FastClick for Mobile/Tablets -->
+		<script src="resources/js/fastclick.js"></script>
+		<!-- Main JS -->
+		<script src="resources/js/main.js"></script>
 
-</body>
-
-
+	</body>
 </html>

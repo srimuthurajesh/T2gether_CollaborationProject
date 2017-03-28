@@ -50,6 +50,7 @@ app.controller('FriendController', ['UserService','$scope', 'FriendService','$lo
                                function(d) {
                                     self.friends = d;
                                     console.log("Got the friends list")
+                                        console.log(d)
                                      	/* $location.path('/view_friend');*/
                                },
                                 function(errResponse){
@@ -88,7 +89,7 @@ app.controller('FriendController', ['UserService','$scope', 'FriendService','$lo
         	  FriendService.acceptfriend(username)
         	  .then( function(){
         		
-                   	 $location.path('/viewallfriends');
+                   	 $location.path('/viewfriends');
              }
             
         			  
@@ -102,7 +103,7 @@ app.controller('FriendController', ['UserService','$scope', 'FriendService','$lo
                       .then(        			  function(d) {
 
                     		  console.log('inside unfriend jolly')
-                    			 $location.path('/viewallfriends')
+                    			 $location.path('/viewfriends')
                     			 self.fetchAllFriends},
                       
                               function(errResponse){
@@ -122,7 +123,8 @@ app.controller('FriendController', ['UserService','$scope', 'FriendService','$lo
 				});
 			};
             
- 
+			// self.friendsonline();
+	         
           self.fetchAllUsers();
           self.getMyFriends();
       self.notifications();

@@ -98,7 +98,7 @@ button:disabled {
   padding-bottom: .5em;
 }
 
-hr {
+hr { 
   display: block;
   height: 1px;
   border: 0;
@@ -107,9 +107,13 @@ hr {
   padding: 0;
 }
 </style>
+
+<img src="resources/images/blog.jpg" style="width:100%"/>
+
+
     <div ng-controller="ChatController" class="container">
-      <form ng-submit="addMessage()" name="messageForm">
-        <input type="text" placeholder="Compose a new message..." ng-model="message" />
+<br><br><br><br><br>      <form ng-submit="addMessage()" name="messageForm">
+        <input type="text" placeholder="Chat here......" ng-model="message" />
         <div class="info">
           <span class="count" ng-bind="max - message.length" ng-class="{danger: message.length > max}">140</span>
           <button ng-disabled="message.length > max || message.length === 0">Send</button>
@@ -123,5 +127,19 @@ hr {
       
     </div>
    
-  
+  <footer id="fh5co-footer">
+					<div class="container">
+						
+						<ul class="fh5co-social-icons">
+							<li><a href="https://www.twitter.com/" target="_blank"><i class="ti-twitter-alt"></i></a></li>
+							<li><a href="https://www.facebook.com/" target="_blank"><i class="ti-facebook"></i></a></li>
+							<li><a href="https://www.github.com/" target="_blank"><i class="ti-github"></i></a></li>
+							<li><a href="https://www.linkedin.com/" target="_blank"><i class="ti-linkedin"></i></a></li>
+						</ul>
+						<p class="text-muted fh5co-no-margin-bottom text-center"><small>&copy; Copyrigth <em>to</em> T2GETHER.COM <br> Created by RajeshInfoTech.Inc</a></small></p>
+
+					</div>
+				</footer>
+			
+		
    

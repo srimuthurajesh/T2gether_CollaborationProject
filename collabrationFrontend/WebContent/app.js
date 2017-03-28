@@ -3,7 +3,13 @@ var app = angular.module('myApp', [ 'ngRoute','ngCookies']);
 app.config(function($routeProvider) {
 	$routeProvider
 
-  .when('/login', {
+	.when('/', {
+	    templateUrl : 'landing.html',
+	    controller  : 'UserController'
+	  })
+
+	  	
+ .when('/login', {
     templateUrl : 'login.html',
     controller  : 'UserController'
   })
@@ -20,7 +26,7 @@ app.config(function($routeProvider) {
 		    templateUrl : 'Blog/viewblog.html',
 		    controller  : 'BlogController'
 		  })
-		    .when('/userblogs', {
+		    .when('/userblog', {
 		    templateUrl : 'Blog/userblogs.html',
 		    controller  : 'BlogController'
 		  })
@@ -45,6 +51,10 @@ app.config(function($routeProvider) {
 		    templateUrl : 'Job/listjob.html',
 		    controller  : 'JobController'
 		  })
+		  .when('/listjobapply', {
+		    templateUrl : 'Job/listjobapply.html',
+		    controller  : 'JobController'
+		  })
 		
 		    .when('/viewalluser', {
 		    templateUrl : 'Friend/viewalluser.html',
@@ -59,7 +69,7 @@ app.config(function($routeProvider) {
 	    templateUrl : 'Friend/viewnotifications.html',
 	    controller  : 'FriendController'
 	  })
-	  .when('/chat', {
+	  .when('/forum', {
 	    templateUrl : 'Chat/chat.html',
 	    controller  : 'ChatController'
 	  })
@@ -71,8 +81,13 @@ app.run( function ($rootScope, $location, $http, $cookieStore) {
 	 $rootScope.$on('$locationChangeStart', function (event, next, current) {
 		 console.log("$locationChangeStart")
 		   
-		 var userPages = ['Blog/addblog','Blog/listblog','listblog','/addblog','/view_friend', '/viewFriendRequest','/chat']
-		 var adminPages = ["/post_job","/manage_users"]
+		 var userPages = ['/addblog',
+		                  '/userblog',
+		                  '/viewfriends',
+		                  '/viewnotifications',
+		                  '/listjobapply',
+		                  '/forum',]
+		 var adminPages = ['/addjob']
 		 
 		 var currentPage = $location.path()
 		  console.log("currentpage ="+ currentPage)
@@ -87,17 +102,17 @@ app.run( function ($rootScope, $location, $http, $cookieStore) {
 	     console.log("isAdminPage:" +isAdminPage)
 	        
 	        if(!isLoggedIn)
-	        	{
+	        	{console.log('inside !isLoggedIn')
 	        	
 	        	 if (isUserPage || isAdminPage) {
 		        	  console.log("Navigating to login page:")
-		        	  alert("You need to loggin to do this operation")
+		        	  alert("You need to login to do this operation")
 
 						            $location.path('/login');
 		                }
 	        	}
 	        
-			 else //logged in
+			 else
 	        	{
 	        	
 				 var role = $rootScope.currentUser.role;
@@ -105,7 +120,7 @@ app.run( function ($rootScope, $location, $http, $cookieStore) {
 				 if(isAdminPage && role!='ROLE_ADMIN' )
 					 {
 					 
-					  alert("You can not do this operation as you are logged as : " + role )
+					  alert("You can not do this operation as you are logged as : User " + role )
 					   $location.path('/login');
 					 
 					 }
@@ -116,11 +131,11 @@ app.run( function ($rootScope, $location, $http, $cookieStore) {
 	 }
 	       );
 	 
-	 
-     $rootScope.currentUser = $cookieStore.get('currentUser') || {};
-     if ($rootScope.currentUser) {
-         $http.defaults.headers.common['Authorization'] = 'Basic' + $rootScope.currentUser; 
-     }
+//	 
+//     $rootScope.currentUser = $cookieStore.get('currentUser') || {};
+//     if ($rootScope.currentUser) {
+//         $http.defaults.headers.common['Authorization'] = 'Basic' + $rootScope.currentUser; 
+//     }
 
 });
 

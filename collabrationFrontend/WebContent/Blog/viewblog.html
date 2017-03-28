@@ -1,5 +1,7 @@
+<img src="resources/images/blog.jpg" style="width:100%"/>
+
 <div class="container" ng-controller="BlogController as ctrl">
-Blog-Name:{{selectedBlog.blogname}}
+<br><br>Blog-Name:{{selectedBlog.blogname}}
 <br> user-name: {{selectedBlog.usename}}
 <br>blogdescription: {{selectedBlog.blogdescription}}
 	
@@ -7,7 +9,7 @@ Blog-Name:{{selectedBlog.blogname}}
 <label for="">Comment:</label>
  <textarea 
 		 class="form-control"
-		ng-model="ctrl.commentModel.comments"   cols="50" rows="10"> </textarea>
+		ng-model="ctrl.commentModel.comments"   style="width:700px" rows="5"> </textarea>
 			
 			<br>
 	<button type="submit"		
@@ -16,17 +18,31 @@ Blog-Name:{{selectedBlog.blogname}}
 
 
 
-Comments below:{{comment.comments}}<br>
-<div ng-repeat="commentlist in ctrl.comment">
-<a  href="#" ng-click="ctrl.getuser(commentlist.username)"> username: {{commentlist.username}} </a>  <br>
-comment :{{commentlist.comments}}
-<br>------------------------------------------------------------------------------------
-</div>
+<!-- Comments below:{{comment.comments}}<br> -->
+<!-- <div ng-repeat="commentlist in ctrl.comment"> -->
+<!-- <a  href="#" ng-click="ctrl.getuser(commentlist.username)"> username: {{commentlist.username}} </a>  <br> -->
+<!-- comment :{{commentlist.comments}} -->
+<!-- <br>------------------------------------------------------------------------------------ -->
+<!-- </div> -->
 
-<br>
-BLOG page:{{currentUser.username}}-name<br>
-<div ng-repeat="bloglist in ctrl.blogs">
-<a  href="#" ng-click="ctrl.getBlog(bloglist.blogname)"> Blog Title: {{bloglist.blogname}}    -----------------------------------Author :{{bloglist.usename}}---------------- </a>
-</div>
-</div>
-</div>
+<!-- <br> -->
+<!-- BLOG page:{{currentUser.username}}-name<br> -->
+<!-- <div ng-repeat="bloglist in ctrl.blogs"> -->
+<!-- <a  href="#" ng-click="ctrl.getBlog(bloglist.blogname)"> Blog Title: {{bloglist.blogname}}    -----------------------------------Author :{{bloglist.usename}}---------------- </a> -->
+<!-- </div> -->
+<!-- </div> -->
+<footer id="fh5co-footer">
+					<div class="container">
+						
+						<ul class="fh5co-social-icons">
+							<li><a href="https://www.twitter.com/" target="_blank"><i class="ti-twitter-alt"></i></a></li>
+							<li><a href="https://www.facebook.com/" target="_blank"><i class="ti-facebook"></i></a></li>
+							<li><a href="https://www.github.com/" target="_blank"><i class="ti-github"></i></a></li>
+							<li><a href="https://www.linkedin.com/" target="_blank"><i class="ti-linkedin"></i></a></li>
+						</ul>
+						<p class="text-muted fh5co-no-margin-bottom text-center"><small>&copy; Copyrigth <em>to</em> T2GETHER.COM <br> Created by RajeshInfoTech.Inc</a></small></p>
+
+					</div>
+				</footer>
+			
+		

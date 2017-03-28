@@ -74,6 +74,21 @@ app.factory('JobService', ['$http', '$q','$rootScope','$cookieStore', function($
                         );
         },
         
+        applyjobbyid: function(){
+            return $http.get (BASE_URL+'/applyjobbyid')
+                    .then(
+                            function(response){
+                            	$rootScope.appliedjob = response.data
+                                
+                                return response.data;
+                            }, 
+                            function(errResponse){
+                                console.error('Error while deleting job');
+                                return $q.reject(errResponse);
+                            }
+                    );
+    },
+        
             getjob: function(jobname){
                 return $http.get  (BASE_URL+'/getJobbyname/'+jobname)
                         .then(

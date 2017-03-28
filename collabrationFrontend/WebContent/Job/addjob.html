@@ -1,35 +1,84 @@
 
+<img src="resources/images/blog.jpg" style="width:100%"/>
 
 <div ng-controller="JobController as ctrl">
 
-	
-	<form name="form" ng-submit="ctrl.addjob()" role="form">
-		
-<label for="">job title</label> 
-<input type="text"	 class="form-control"
-					ng-model="ctrl.jobModel.jobname" ng-init="ctrl.jobModel.jobname=editjob.jobname" required /> 		
 
-				
 
-<input type="hidden" 	value="currentUser.username" name="username" id="username" class="form-control"
-					ng-model="ctrl.jobModel.username"  /> 					
-		
 
-<label for="">job content</label>
- <textarea 
-		name="jobdescription" id="jobdescription" class="form-control"
-		ng-model="ctrl.jobModel.jobdescription" ng-init="ctrl.jobModel.jobdescription=editjob.jobdescription" required  cols="50" rows="10"> </textarea>
-			
-			<br>
-	<button type="submit"		
-					class="btn btn-primary">Add job</button>
-				
-		</form>
-	job page:{{currentUser.username}}-name<br>
-<div ng-repeat="joblist in ctrl.jobs">
-<a  href="#" ng-click="ctrl.getJob(joblist.jobname)"> job Title: {{joblist.jobname}}   ------post by :{{joblist.usename}}---- </a>
-<a href="#" ng-click="ctrl.deletejob(joblist.jobname)"> Remove</a>--<a href="#" ng-click="ctrl.editjob(joblist.jobname)"> Edit</a>
+
+
+
+				<section>
+					<div class="container">
+						
+						<div class="row">
+
+							<div class="fh5co-spacer fh5co-spacer-sm"></div>	
+							<div class="col-md-8">
+								<form ng-submit="ctrl.addjob()">
+									<div class="col-md-12">
+										<div class="form-group">
+											<label for="name" class="sr-only">Job Post : </label>
+											<input placeholder="Job Post" id="name" type="text" ng-model="ctrl.jobModel.jobname"  ng-init="ctrl.jobModel.jobname=editjob.jobname" class="form-control input-lg">
+										</div>	
+									</div>
+									
+									<div class="col-md-12">
+										<div class="form-group">
+											<label for="name" class="sr-only">Details : </label>
+											<input placeholder="Job Details"  id="name" type="text" ng-model="ctrl.jobModel.jobdescription"  ng-init="ctrl.jobModel.jobdescription=editjob.jobdescription" class="form-control input-lg">
+										</div>	
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="submit" class="btn btn-primary btn-lg " value="Add Job">
+
+										</div>	
+									</div>
+									
+									
+								</form>	
+								
+							</div>
+							<div class="col-md-4">
+								<h3>Post Yout Blog</h3>
+								<p>Earn from your blogs, share your opinions and views with others</p>
+								<p>
+									<a href="#">help@t2gether.com</a>
+								</p>
+							</div>
+
+							<div class="fh5co-spacer fh5co-spacer-md"></div>	
+
+						</div>
+						
+					</div>
+				</section>
+
 
 </div>
-</div>
+
+
+
+
+
+
+
+
+
+
+			<footer id="fh5co-footer">
+					<div class="container">
+						
+						<ul class="fh5co-social-icons">
+							<li><a href="https://www.twitter.com/" target="_blank"><i class="ti-twitter-alt"></i></a></li>
+							<li><a href="https://www.facebook.com/" target="_blank"><i class="ti-facebook"></i></a></li>
+							<li><a href="https://www.github.com/" target="_blank"><i class="ti-github"></i></a></li>
+							<li><a href="https://www.linkedin.com/" target="_blank"><i class="ti-linkedin"></i></a></li>
+						</ul>
+						<p class="text-muted fh5co-no-margin-bottom text-center"><small>&copy; Copyrigth <em>to</em> T2GETHER.COM <br> Created by RajeshInfoTech.Inc</a></small></p>
+
+					</div>
+				</footer>
 
