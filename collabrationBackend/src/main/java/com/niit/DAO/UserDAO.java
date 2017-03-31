@@ -14,7 +14,7 @@ public interface UserDAO{
 	public List<UserModel> list();
 	public boolean saveonline(UserModel userModel);
 	public boolean offline(String username);
-		
+	public List<UserModel> manageuser();
 		
 
 }

@@ -19,7 +19,7 @@ app.controller(	'UserController', [	'$scope', 'UserService','$location','$rootSc
 							};
 							
 							this.users = []; //json array
-							
+							this.manageuser=[];
 							self.createUser = function(user) {
 								UserService
 										.createUser(user)
@@ -30,10 +30,14 @@ app.controller(	'UserController', [	'$scope', 'UserService','$location','$rootSc
 
 													console.log("hiiii"+self.user.errorCode)
 													if(self.user.errorCode!="404"){
-													alert("Thank you for registration")
+												alertify.alert("Successfully registered")
+													
+														self.authenticate(user)
 													}else{
-														alert(self.user.username +" already exist, Try new username")	
-													}														
+														alertify.alert(self.user.username +" already exist, Try new username")	
+														
+													}				self.reset();
+																									
 												});
 							};							
 						
@@ -49,11 +53,11 @@ app.controller(	'UserController', [	'$scope', 'UserService','$location','$rootSc
 													self.user = d;
 													console.log(self.user.errorMessage+"invalie "+self.user.errorCode)
 
-													if (self.user.errorCode == "404")
+													if (self.user.errorCode != "200")
 
 													{
-														console.log(self.user.errorMessage+"invalie "+self.user.errorCode)
-														alert(self.user.errorMessage)
+														console.log(self.user.errorMessage+"inv "+self.user.errorCode)
+														alertify.error('invalid credentials, Try again')
 
 														self.user.username = "";
 														self.user.password = "";
@@ -62,9 +66,10 @@ app.controller(	'UserController', [	'$scope', 'UserService','$location','$rootSc
 														$rootScope.currentUser = self.user
 														$cookieStore.currentUser=self.user
 														console.log(self.user);
-	                                                 	
+	                                                 	alertify.success('You are loggedin successfully')
 														 $location.path('/');
-													}
+													}		self.reset();
+													
 
 												},
 												function(errResponse) {
@@ -81,10 +86,30 @@ UserService.logout().then(
 								$cookieStore.remove('currentUser');
 								//UserService.logout()
 								//$location.path('/login');
-								 $location.path('/');
+								 $location.path('/');	alertify.success('You are Logged Out successfully')
+									
 									
 							});
 							};
+							
+							
+		
+							
+							
+							
+		
+							
+							self.manageuser=function(){
+								UserService.manageuser().then(
+										function(d){
+											self.manageuser=d;
+											console.log(d)
+											console.log(self.manageuser)
+											
+											$location.path('/manageuser');
+												
+										})
+							}
 
 							
 							self.login = function() {
@@ -103,6 +128,23 @@ UserService.logout().then(
 								{
 									self.logouts();
 								}
+							};
+
+							self.reset = function() {
+								self.user = {
+										username : '',
+										firstname : '', 
+										secondname : '', 
+										password : '',	
+										mobile : '',
+										address : '', 
+										email : '',
+										is_online : '',	
+										role : '',
+										errorCode : '',	
+										errorMessage : '' , 
+										imageUrl:''
+								};
 							};
 
 

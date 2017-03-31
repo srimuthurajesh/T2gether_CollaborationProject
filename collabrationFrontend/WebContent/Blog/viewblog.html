@@ -1,20 +1,20 @@
 <img src="resources/images/blog.jpg" style="width:100%"/>
 
 <div class="container" ng-controller="BlogController as ctrl">
-<br><br>Blog-Name:{{selectedBlog.blogname}}
-<br> user-name: {{selectedBlog.usename}}
-<br>blogdescription: {{selectedBlog.blogdescription}}
+<br><br><strong>Blog-Name:</strong>{{selectedBlog.blogname}}<br>
+<br> <strong>Author:</strong> {{selectedBlog.usename}}<br>
+<br><strong>Blogdescription:</strong><br><t> {{selectedBlog.blogdescription}}
 	
-	<form name="form" ng-submit="ctrl.addcomments()" role="form">
-<label for="">Comment:</label>
- <textarea 
-		 class="form-control"
-		ng-model="ctrl.commentModel.comments"   style="width:700px" rows="5"> </textarea>
-			
-			<br>
-	<button type="submit"		
-					class="btn btn-primary">Add comment</button>
-		</form>
+<!-- 	<form name="form" ng-submit="ctrl.addcomments()" role="form"> -->
+<!-- <label for="">Comment:</label> -->
+<!--  <textarea  -->
+<!-- 		 class="form-control" -->
+<!-- 		ng-model="ctrl.commentModel.comments"   style="width:700px" rows="5"> </textarea> -->
+<!-- <input type="hidden" ng-model="ctrl.commentModel.blogname" value="selectedBlog.blogname" >			 -->
+<!-- 			<br> -->
+<!-- 	<button type="submit"		 -->
+<!-- 					class="btn btn-primary">Add comment</button> -->
+<!-- 		</form> -->
 
 
 
@@ -25,12 +25,7 @@
 <!-- <br>------------------------------------------------------------------------------------ -->
 <!-- </div> -->
 
-<!-- <br> -->
-<!-- BLOG page:{{currentUser.username}}-name<br> -->
-<!-- <div ng-repeat="bloglist in ctrl.blogs"> -->
-<!-- <a  href="#" ng-click="ctrl.getBlog(bloglist.blogname)"> Blog Title: {{bloglist.blogname}}    -----------------------------------Author :{{bloglist.usename}}---------------- </a> -->
-<!-- </div> -->
-<!-- </div> -->
+</div>
 <footer id="fh5co-footer">
 					<div class="container">
 						

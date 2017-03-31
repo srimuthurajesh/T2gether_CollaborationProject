@@ -49,6 +49,13 @@ app.factory('UserService', ['$http', '$q','$rootScope', '$cookieStore', function
                         );
         },
         
+manageuser: function(){
+	return $http.get(BASE_URL+'/manageuser').then(
+			function(response){
+				return response.data;},null);
+			
+},
+
 
         fetchAllUsers: function() {
         	console.log("inside  fetchAllUsers service ")

@@ -22,11 +22,20 @@
 	<!-- Easy Responsive Tabs -->
 	<link rel="stylesheet" href="resources/css/easy-responsive-tabs.css">
 
+
+<!-- include the core styles -->
+<link rel="stylesheet" href="resources/alertify.default.css" />
+<link rel="stylesheet" href="resources/alertify.core.css" />
+
+<!-- include a theme, can be included into the core instead of 2 separate files -->
+<link rel="stylesheet" href="resources/alertify.default.css" />
 	
 
 	<!-- Theme Style -->
 	<link rel="stylesheet" href="resources/css/style.css">
-
+	
+	
+<script src="resources/alertify.min.js"></script>
 <script src="resources/angular.js"></script>  
 <script src="resources/angular-route.js"></script>
 <!-- <script src="resources/angular-cookies.js"></script> -->
@@ -53,6 +62,10 @@
 							<li class="active">
 								<a href="#/"><b>Home</b></a>
 							</li>
+							<li class="active" ng-if="$root.currentUser.role=='ROLE_ADMIN' ">
+								<a href="#" ng-click="ctrl.manageuser()"><b>Manage User Accounts</b></a>
+							</li>
+							
 							<li class="active">
 								<a href="#" class="fh5co-sub-ddown"><b>Blogs</b></a>
 								 <ul class="fh5co-sub-menu">
@@ -71,7 +84,7 @@
 								</ul>
 							</li>
 							
-							<li class="active">
+							<li class="active" ng-if="$root.currentUser.role!='ROLE_ADMIN' ">
 								<a href="#" class="fh5co-sub-ddown"><b>Friends</b></a>
 								 <ul class="fh5co-sub-menu">
 								 	<li><a href="#/viewalluser" style="font-size:15px"><b>View All Users</b></a></li>
@@ -116,7 +129,7 @@
                      </ul>
                   </li>
                 			
-                  	<li class="active" ng-if="$root.currentUser.username.length "><a href="contact.html"><b>{{currentUser.username}}' account</b></a></li>
+                  	<li class="active" ng-if="$root.currentUser.username.length "><a href="#/userpage"><b>{{currentUser.username}}' account</b></a></li>
                     <li class="active" ng-if="$root.currentUser.username.length "><a href="#" ng-click="ctrl.logout()"><b>Logout</b></a></li>
 						
                </ul>

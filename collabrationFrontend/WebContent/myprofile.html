@@ -1,0 +1,51 @@
+<img src="resources/images/blog.jpg" style="width:100%"/>
+
+<div ng-controller="UserController as ctrl">
+ <div class="container">
+	<div class="row">
+		<h2 class="page-header">User Profile</h2>
+        <div class="col-md-4">
+        
+          <div class="col-md-10 col-lg-10 " align="center"> 
+<!--         <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" style="height:270px;width:100% "class="img-circle img-responsive">  -->
+        </div>
+            
+        </div>
+        <div class="col-md-12">
+        <h3>{{currentUser.firstname}}&nbsp;&nbsp;{{currentUser.secondname}}</h3>
+                <div class=" col-md-9 col-lg-9 ">
+                                <table class="table table-user-information" >
+                                    <tbody><col width="200">
+  <col width="200">
+
+       
+       
+  
+                                    <tr>
+                                            <td><span class="glyphicon glyphicon-user text-primary"></span>&nbsp;&nbsp;Username </td>
+                                            <td>:&nbsp;&nbsp; {{currentUser.username}}</td>
+                                     </tr>  
+                                        <tr>
+                                            <td> <span class="glyphicon glyphicon-phone text-primary"></span>&nbsp;&nbsp;First Name </td>
+                                            <td>:&nbsp;&nbsp; {{currentUser.firstname}}</td>
+                                        </tr>
+                                       
+                                        <tr>
+                                            <td> <span class="glyphicon glyphicon-phone text-primary"></span>&nbsp;&nbsp;Second Name </td>
+                                            <td>:&nbsp;&nbsp; {{currentUser.secondname}}</td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td> <span class="glyphicon glyphicon-envelope text-primary"></span>&nbsp;&nbsp;Email Id </td>
+                                            <td>:&nbsp;&nbsp; {{currentUser.email}}</td>
+                                        </tr>
+										
+										  <tr>
+                                            <td> <span class="glyphicon glyphicon-phone text-primary"></span>&nbsp;&nbsp;Mobile </td>
+                                            <td>:&nbsp;&nbsp; {{currentUser.mobile}}</td>
+                                        </tr>
+
+                                        
+                                    </tbody>
+                                </table>
+                    </div></div></div></div></div>

@@ -50,27 +50,28 @@ public class UserController {
 	
 	
 	
-	//@GetMapping(value="/validate")
+	@SuppressWarnings("unused")
 	@RequestMapping(value = "/validate", method = RequestMethod.POST)
 	public UserModel validateCredentials(@RequestBody UserModel userModel, HttpSession session){
-UserModel userModel2= new UserModel();
-userModel2=userDAO.validate(userModel.getUsername(), userModel.getPassword());
-		if(userModel2 == null){
-			userModel=new UserModel();
-			userModel.setErrorCode("404");
-System.out.println("Invalid Credential..password..plese try again");
-			userModel.setErrorMessage("Invalid Credential..password..plese try again");
-			
-		}else{
-			
-			userDAO.saveonline(userModel2);
-			userModel.setErrorCode("200");
-			System.out.println("sucess log in ");
-			userModel.setErrorMessage("You aer succesfully logged in ....");
-			session.setAttribute("Username", userModel.getUsername());
-			
-				}
-return userModel2;
+		UserModel userModel2= new UserModel();
+		userModel2=userDAO.validate(userModel.getUsername(), userModel.getPassword());
+	if(userModel2 == null){
+					userModel=new UserModel();
+					userModel.setErrorCode("404");
+		System.out.println("Invalid Credential..password..plese try again");
+					userModel.setErrorMessage("Invalid Credential..password..plese try again");
+					
+				}else{
+					
+					userDAO.saveonline(userModel2);
+					userModel2.setErrorCode("200");
+					System.out.println("sucess log in ");
+					userModel2.setErrorMessage("You aer succesfully logged in ....");
+					session.setAttribute("Username", userModel2.getUsername());
+					
+						}
+		return userModel2;
+		
 }
 
 	
@@ -78,6 +79,7 @@ return userModel2;
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 		public ResponseEntity<UserModel> Register(@RequestBody UserModel userModel) throws MessagingException {
 		if(userDAO.get(userModel.getUsername())==null){
+			userModel.setStatus('w');
 			userDAO.save(userModel);
 		
 			AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
@@ -90,7 +92,7 @@ return userModel2;
 		      	   mailMsg.setFrom("srimuthurajesh007@gmail.com");
 		      	   mailMsg.setTo(userModel.getEmail());
 		      	   mailMsg.setSubject("Activated");
-		      	   mailMsg.setText("Your successfull registered");
+		      	   mailMsg.setText("From:T2Gether.com Account Activated, Your successfully registered");
 			   mailSender.send(mimeMessage);
 		
 			
@@ -127,7 +129,10 @@ return userModel2;
 
 	
 	}
-	
+	@GetMapping("/manageuser")
+	public List<UserModel> manageuser(HttpSession session){
+		return userDAO.manageuser();
+	}
 }
 
 

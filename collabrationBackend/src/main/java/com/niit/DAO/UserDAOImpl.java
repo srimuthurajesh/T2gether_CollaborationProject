@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.niit.Model.FriendModel;
 import com.niit.Model.UserModel;
 
 @SuppressWarnings("deprecation")
@@ -92,5 +93,14 @@ return sessionFactory.getCurrentSession().get(UserModel.class, username);
 	}
 		return false;
 	}
+	
+	@Transactional
+	public List<UserModel> manageuser(){
+
+String hql="from UserModel where status='w'";
+	List<UserModel> list= sessionFactory.openSession().createQuery(hql).list();
+	return list;
+	}
+	
 }
 

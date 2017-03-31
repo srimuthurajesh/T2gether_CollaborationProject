@@ -73,6 +73,15 @@ app.config(function($routeProvider) {
 	    templateUrl : 'Chat/chat.html',
 	    controller  : 'ChatController'
 	  })
+	
+	   .when('/manageuser', {
+	    templateUrl : 'manageuser.html',
+	    controller  : 'UserController'
+	  })
+	    .when('/userpage', {
+	    templateUrl : 'myprofile.html',
+	    controller  : 'UserController'
+	  })
 });
 
 
@@ -106,7 +115,7 @@ app.run( function ($rootScope, $location, $http, $cookieStore) {
 	        	
 	        	 if (isUserPage || isAdminPage) {
 		        	  console.log("Navigating to login page:")
-		        	  alert("You need to login to do this operation")
+		        	  alertify.alert("You need to login to do this operation")
 
 						            $location.path('/login');
 		                }
@@ -120,7 +129,7 @@ app.run( function ($rootScope, $location, $http, $cookieStore) {
 				 if(isAdminPage && role!='ROLE_ADMIN' )
 					 {
 					 
-					  alert("You can not do this operation as you are logged as : User " + role )
+					  alertify.alert("You can not do this operation as you are logged as : User " + role +"Need to login as Admin")
 					   $location.path('/login');
 					 
 					 }
